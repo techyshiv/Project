@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+  
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+     <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Prodcut Type</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Price Management/Product</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add Product <small></small></h3>
+              </div>
+              <div>
+                <div class="{{prop}}">
+                    <span id="mess">{{data1}}</span>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" action="/Addproduct" method="POST">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Prodcut Name</label>
+                    <input type="text" name="product" class="form-control" id="proname" placeholder="Enter product name">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Prodcut Code</label>
+                    <input type="number" name="code" class="form-control" id="procode" placeholder="Enter product code">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Prodcut Price</label>
+                    <input type="number" name="price" class="form-control" id="proprice" placeholder="Enter product price">
+                  </div>
+              
+            
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" id="btnsubmit">Add</button>
+                </div>
+         
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+      <div class="mb-2">
+        <input type="text" name="" id="myinput" class="float-right" placeholder="Search by Name" onkeyup="serachfun()">
+        <button class="btn btn-primary" id="download">Download Pdf</button>
+        <a href="" class="btn btn-primary" id="refresh">Refresh</a>
+      </div>
+                <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">Products</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="">
+                  <!-- <table class="table table-bordered" id="table"> -->
+                    <table id="example"
+                  class="table table-bordered display" id="table">
+                    <thead>
+                    <tr>
+                      <th>S No.</th>
+                      <th>Name</th>
+                      <th>Prodcut Code</th>
+                      <th>Price</th>
+                      <th id="edit">Edit</th>
+                      <th id="del">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody id="example">
+                      {% for data in org_data %}
+                      <tr>
+                          <td>{{data.Id}}</td>
+                          <td>{{data.ProductName}}</td>
+                          <td>{{data.ProductCode}}</td>
+                          <td>{{data.Product_Price}}</td>
+                          <td><button class="btn btn-primary viewbtn"><i class="fas fa-edit"></i></button></td>
+                          <td><button class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+        
+              <!-- /.card-footer -->
+            </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<script>
+  $(document).ready(function(){
+    $("#btnsubmit").click(function(){
+      let proname=$('#proname').val();
+      let procode=$("#procode").val();
+      let proprice=$("proprice").val();
+      if(proname==""){
+        alert("Please Enter Product Name");
+        return false;
+      }
+      if(procode==""){
+        alert("Please Enter Product Code");
+        return false;
+      }
+      if(proprice==""){
+        alert("Please Enter Product Price");
+        return false;
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('.table tbody').on('click','.viewbtn',function(){
+      var currow=$(this).closest('tr');
+      var col1=currow.find('td:eq(0)').text();
+      var col2=currow.find('td:eq(1)').text();
+      var col3=currow.find('td:eq(2)').text();
+      var col4=currow.find('td:eq(3)').text();
+      result=col1+'\n'+col2+'\n'+col3+'\n'+col4
+      if(result!=""){
+        window.open("/Edit/Product/?id=" + col3,"_self");
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('.table tbody').on('click','.deletebtn',function(){
+      var currow=$(this).closest('tr');
+      var col1=currow.find('td:eq(0)').text();
+      var col2=currow.find('td:eq(1)').text();
+      var col3=currow.find('td:eq(2)').text();
+      var col4=currow.find('td:eq(3)').text();
+      result=col1+'\n'+col2+'\n'+col3+'\n'+col4
+      if(result!=""){
+        window.open("/Delete/Product/?id=" + col3,"_self");
+      }
+    });
+  });
+</script>
+<script>
+  const serachfun=()=>{
+    let filter=document.getElementById("myinput").value.toUpperCase();
+    console.log(filter);
+    let mytable=document.getElementById("example");
+    let tr=mytable.getElementsByTagName("tr");
+    for(var i=0;i<tr.length;i++){
+      let td=tr[i].getElementsByTagName('td')[1];
+      if(td){
+        let txtvalue=td.textContent || td.innerHTML;
+        if(txtvalue.toUpperCase().indexOf(filter)>-1){
+          tr[i].style.display="";
+        }else{
+          tr[i].style.display="none";
+        }
+      }
+    }
+  };
+</script>
+<script>
+	window.onload = function () {
+		document.getElementById("download").addEventListener("click", () => {
+			const invoice = document.getElementById("example");
+      $(".deletebtn").hide();
+      $(".viewbtn").hide();
+      $("#edit").hide();
+      $("#del").hide();
+			console.log(invoice);
+			var opt = {
+				margin: 1,
+				filename: 'product.pdf',
+				image: { type: 'jpeg', quality: 0.98 },
+				html2canvas: { scale: 1 },
+				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			};
+			html2pdf().from(invoice).set(opt).save();
+		});
+	}
+</script>
+<script>
+  $(document).ready(function(){
+    $("#refresh").click(function(){
+      $(".deletebtn").show();
+      $(".viewbtn").show();
+      $("#edit").show();
+      $("#del").show();
+    });
+  });
+</script>
+{% endblock %}

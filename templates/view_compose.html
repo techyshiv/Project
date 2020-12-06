@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>View Notices</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">View Notices</li>
+                        </ol>
+                    </div>
+
+
+
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2"></div>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="radio" checked="checked" name="radiobutton" id="radiobutton1">
+                                    <label>Select Duration</label> <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="duration"
+                                        id="duration">
+                                        <option value="Today" selected="selected">Today</option>
+                                        <option>All</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+
+                                    <input type="radio" name="radiobutton" id="radiobutton2">
+
+                                    <label>From Date:</label> <input type="date" disabled class="form-control"
+                                        style="width: 100%;" name="from" id="from">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+
+                                    <label>To Date:</label> <input type="date" disabled class="form-control"
+                                        style="width: 100%;" name="to" id="to">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Select Template</label> <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="duration"
+                                        id="template">
+                                        <option selected="selected">Select</option>
+                                        {% if data1==1 %}
+                                        {% for data in notice %}
+                                        <option>{{data.NoticeName}}</option>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <button class="btn btn-primary form-control" type="submit" style="margin-top: 30px"
+                                        id="btnSubmit">Search</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- jquery validation -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">View Invoice</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="showstaus">
+                                
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer Id</th>
+                                            <th>Customer Name</th>
+                                            <th>Mail Body</th>
+                                            <th>Mail Subject</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablerow">
+                                    </tbody>
+
+
+                                </table>
+
+
+                            </div>
+
+                            <!-- /.card-body -->
+                        </div>
+
+                        <div style="display: none" class="small_loader" id="small_loader1"></div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6"></div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% include 'footer.html' %}
+</div>
+<script>
+    $(document).ready(function () {
+        $('#radiobutton2').on('change', function () {
+            console.log($("#duration").val());
+            if ($("#duration").val() != "Today") {
+                $("#from").prop('disabled', false);
+                document.getElementById('from').valueAsDate = new Date();
+
+                $("#to").prop('disabled', false);
+                document.getElementById('to').valueAsDate = new Date();
+                $("#duration").prop('disabled', true);
+            }
+        });
+
+        $('#radiobutton1').on('change', function () {
+            $("#duration").prop('disabled', false);
+            $("#duration").val('all');
+            $("#from").prop('disabled', true);
+            $("#from").val('');
+            $("#to").prop('disabled', true);
+            $("#to").val('');
+
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            let duration = $("#duration").val();
+            let from = $("#from").val();
+            let end = $("#to").val();
+            let template = $("#template").val();
+            let date = new Date();
+            let day = date.toLocaleDateString().slice(3, 5)
+            let month = date.toLocaleDateString().slice(0, 2)
+            let year = date.toLocaleDateString().slice(6, 10)
+            let full = year + "-" + day + "-" + month;
+            $.ajax({
+                url: "/getcompose",
+                type: "POST",
+                data: { 'duration': duration, 'from': from, 'end': end, 'template': template, 'full': full },
+                success: function (data) {
+                    console.log("Success");
+                    if (data.Result.length > 0) {
+                        for (let i = 0; i < data.Result.length; i++) {
+                            $("#tablerow").append(`<tr><td>${data.Result[i]["Id"]}</td><td>${data.Result[i]["CustomerName"]}</td><td><div style="display:inline-block;width:240px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;padding: 5px;">${data.Result[i]["MailBody"]}</div></td><td><div style="display:inline-block;width:240px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;padding: 5px;">${data.Result[i]["MailSubject"]}</div></td><td>${data.Result[i]["Date"]}</td><td>${data.Result[i]["Time"]}</td><td><button class="btn btn-primary viewbtn"><i class="fas fa-eye"></i></button></td><td><button class="btn btn-primary deletebtn"><i class="fas fa-trash"></i></button></td></tr>`)
+                        }
+                    }
+                    else {
+                        alert("Data Not Found");
+                        return false;
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.table tbody').on('click', '.viewbtn', function () {
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            var col4 = currow.find('td:eq(3)').text();
+            var col5 = currow.find('td:eq(4)').text();
+            var col6 = currow.find('td:eq(5)').text();
+            result = col1 + '\n' + col2;
+            if (result != "") {
+                window.open("/View/compose/?id=" + col1, "_self");
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('.table tbody').on('click', '.deletebtn', function () {
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            var col4 = currow.find('td:eq(3)').text();
+            var col5 = currow.find('td:eq(4)').text();
+            var col6 = currow.find('td:eq(5)').text();
+            result = col1 + '\n' + col2;
+            if (result != "") {
+                $.ajax({
+                url:"/delete/compose/",
+                type:"POST",
+                data:{"id":col1},
+                success:function(data){
+                    console.log("Success");
+                    currow.remove();
+                    $("#showstaus").append(`<div class="${data.Result.prop}"><span>${data.Result.data1}</span></div>`)
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+            }
+        });
+    });
+</script>
+
+{% endblock %}

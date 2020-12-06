@@ -1,0 +1,387 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+    <!-- Content Wrapper. Contains page content -->
+   <!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Day Book</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
+								<li class="breadcrumb-item active">Record</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<section class="content">
+				<div class="container-fluid">			       
+					<div class="row">				         
+						<!-- left column -->
+						<div class="col-md-12">
+							<!-- jquery validation -->
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">DataTable with default features</h3>
+								</div>
+								<div class="container">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Invoice Type</label> <select
+													class="form-control select2 select2-danger"
+													data-dropdown-css-class="select2-danger"
+													style="width: 100%;" name="invoiceType" id="invoiceType">
+													<option value="All" selected="selected">All</option>
+													<option value="Yes">with GST</option>
+													<option value="No">Without GST</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<input type="radio" checked="checked" name="radiobutton"
+													id="radiobutton1"> <label>Select Duration</label> <select
+													class="form-control select2 select2-danger"
+													data-dropdown-css-class="select2-danger"
+													style="width: 100%;" name="duration" id="duration">
+													<option value="Today" selected="selected">Today</option>
+													<option value="All">All</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="form-group">
+												<input type="radio" name="radiobutton" id="radiobutton2">
+												<label>From Date:</label> <input type="date" disabled
+													class="form-control" style="width: 100%;" name="from"
+													id="from">
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+
+												<label>To Date:</label> <input type="date" disabled
+													class="form-control" style="width: 100%;" name="to" id="to">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Area </label> <select
+													class="form-control select2 select2-danger"
+													data-dropdown-css-class="select2-danger"
+													style="width: 100%;" id="areaid">
+													<option>--select--</option>
+													<option>All</option>
+													{% if data1==1 %}
+													{% for item in area %}
+                                                    <option>{{item.Name}}</option>
+													{% endfor %}
+													{% endif %}
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Executive</label> <select
+													class="form-control select2 select2-danger"
+													data-dropdown-css-class="select2-danger"
+													style="width: 100%;" id="executiveid">
+													<option value="" selected disabled>--select--</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Customer</label> <select
+													class="form-control select2 select2-danger"
+													data-dropdown-css-class="select2-danger"
+													style="width: 100%;" id="customerid">
+													<option value="" selected disabled>--select--</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<button class="btn btn-primary form-control" type="submit"
+													style="margin-top: 30px" id="btnSubmit">Search</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>							             
+							<!-- /.card-header -->                     
+							<div class="card-body">             
+								<div  id="tab">
+									<div id="createfield">
+										<input type="text" name="" id="myinput" class="float-right mt-3 p-2" placeholder="Search by invoice no." onkeyup="serachfun()">
+									</div>
+									<br/>
+									<div class="mb-2">
+										<!-- <button class="btn btn-primary" id="download">Download Pdf</button> -->
+										<button onclick="exportTableToExcel('example')" class="btn btn-primary">Export Table Data To Excel File</button>
+										<a href="{{url_for('payment_update')}}" class="btn btn-primary mt-3 mb-3" id="but">UpdateStatus</a>
+									</div>               
+									<table id="example"
+										class="table table-responsive table-bordered table-striped display" >                             
+										<thead>	                 
+											<tr>
+												<th id="sn">S.No</th>
+												<th>Customer Id</th>
+												<th>Invoice No.</th>
+												<th>Name</th>
+												<th>Address</th>
+												<th id="mail">Mail Id</th>
+												<th id="what">WhatsApp Number</th>
+												<th>Payment Status</th>
+												<th id="pay">Payment Mode</th>
+												<th id="sub">Subtotal</th>
+												<th id="tax">Tax Amount</th>
+												<th>Grand Total</th>
+												<!-- <th id="but">
+													<a href="{{url_for('payment_update')}}" class="btn btn-primary">UpdateStatus</a>
+												</th> -->
+											</tr>				                 
+										</thead>
+										<tbody id="trow">                           
+										</tbody>
+										                       
+									</table>
+									                             
+									<!-- /.card-body -->
+									       <div style="display: none" class="small_loader"
+										id="small_loader1"></div>    
+								</div>
+								           
+								<!-- /.card -->
+								           
+							</div>
+							         
+							<!--/.col (left) -->
+							         
+							<!-- right column -->
+							         
+							<div class="col-md-6">         </div>
+							         
+							<!--/.col (right) -->
+							       
+						</div>
+						       
+						<!-- /.row -->
+						     
+						<!-- /.container-fluid -->
+					</div>
+					   
+			</section>
+
+			   
+			<!-- /.content -->
+			 
+		</div>
+		 
+		<!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
+    {% include 'footer.html' %}
+</div>
+<!-- <script>
+	$(document).ready(function(){
+		$("#tablehead").hide();
+	});
+</script> -->
+<script>
+	$(document).ready(function () {
+		$("#but").hide();
+		$('#radiobutton2').on('change', function () {
+			console.log($("#duration").val());
+			if ($("#duration").val() != "Today") {
+				$("#from").prop('disabled', false);
+				document.getElementById('from').valueAsDate = new Date();
+
+				$("#to").prop('disabled', false);
+				document.getElementById('to').valueAsDate = new Date();
+				$("#duration").prop('disabled', true);
+			}
+		});
+
+		$('#radiobutton1').on('change', function () {
+			$("#duration").prop('disabled', false);
+			$("#duration").val('all');
+			$("#from").prop('disabled', true);
+			$("#from").val('');
+			$("#to").prop('disabled', true);
+			$("#to").val('');
+
+		});
+	});
+</script>
+<script>
+    $(document).ready(function(){
+        $("#areaid").change(function(){
+            $.ajax({
+                url: '/Invoice/executive?area='+ document.getElementById('areaid').value ,
+                success: function(data) {
+					console.log(data.Result[0]);
+					if($("#areaid").val()=="All"){
+						let s = `<option>All</option>`
+						$('#executiveid').html(s);
+						$('#customerid').html(s);
+					}
+					else{
+						let s=`<option>Select</option><option>All</option>`;
+						for(let i=0;i<data.Result.length;i++){
+							s+=`<option>${data.Result[i].HawkerName}</option>`
+						}
+						$('#executiveid').html(s);
+					}
+                }
+        });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#executiveid').change(function(){
+        $.ajax({
+                url: '/Invoice/customer?executive='+ document.getElementById('executiveid').value ,
+                success: function(data) {
+                    console.log(data.Result[0]);
+					let s="";
+					if($("#executiveid").val()=="All"){
+						s=`<option>All</option>`;
+					}
+					else{
+						s=`<option>Select</option>`;
+                    for(let i=0;i<data.Result.length;i++){
+                        s+=`<option>${data.Result[i].CustomerName}</option>`
+                    }
+					}
+                    $('#customerid').html(s);
+                }
+        });
+    });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+		let count=0;
+        $("#btnSubmit").click(function(){
+            var from = $("#from").val();
+            var to = $("#to").val();
+            var duration = $("#duration").val();
+			var customerid = $("#customerid").val();
+			var type=$("#invoiceType").val();
+			var exename=$("#executiveid").val();
+			let date = new Date();
+			// let day = date.toLocaleDateString().slice(3, 5)
+			// let month = date.toLocaleDateString().slice(0, 2)
+			// let year = date.toLocaleDateString().slice(6, 10)
+			let full = date.toLocaleDateString();
+            var details=from+","+to+","+customerid+","+duration+","+full+","+exename+","+type;
+            $.ajax({
+                url:"/Payment/Daybook/?pro="+details,
+                success:function(data){
+                    console.log(data);
+                    if(data.Invoice.length>0 && data.Customer!="No Data Found"){
+						$("#but").show();
+						var x = document.getElementById("example").rows.length;
+						console.log(x);
+						// $("#createfield").append(``)
+						// $("#tablehead").show();
+                        for(let i=0;i<data.Invoice.length;i++){
+                            $("#trow").append(`<tr><td id="sn1">${i+x}</td><td>${data.Customer[i]["CustomerId"]}</td><td>${data.Invoice[i]["Id"]}</td><td>${data.Invoice[i]["Name"]}</td><td>${data.Invoice[i]["Address"]}</td><td id="email1">${data.Invoice[i]["Email"]}</td><td id="mob">${data.Invoice[i]["Mobile"]}</td><td>${data.Invoice[i]["PaymentStatus"]}</td><td id="paym">${data.Invoice[i]["PaymentMode"]}</td><td id="sub1">${data.Invoice[i]["SubTotal"]}</td><td id="tax1">${data.Invoice[i]["TaxAmmount"]}</td><td>${data.Invoice[i]["GrandTotal"]}</td></tr>`)
+                        }
+											
+                    }
+                    else{
+                        alert("Data Not Found Please select Correct Data");
+                    }
+                }
+            });
+        });
+    });
+</script>
+<!-- <script>
+	window.onload = function () {
+		document.getElementById("download").addEventListener("click", () => {
+			const invoice = document.getElementById("example");
+			console.log(invoice);
+			var opt = {
+				margin: 1,
+				filename: 'myfile.pdf',
+				image: { type: 'jpeg', quality: 0.98 },
+				html2canvas: { scale: 1 },
+				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			};
+			html2pdf().from(invoice).set(opt).save();
+		});
+	}
+</script> -->
+<script>
+	const serachfun=()=>{
+	  let filter=document.getElementById("myinput").value.toUpperCase();
+	  // console.log(filter);
+	  let mytable=document.getElementById("example");
+	  let tr=mytable.getElementsByTagName("tr");
+	  for(var i=0;i<tr.length;i++){
+		let td=tr[i].getElementsByTagName('td')[2];
+		if(td){
+		  let txtvalue=td.textContent || td.innerHTML;
+		  if(txtvalue.toUpperCase().indexOf(filter)>-1){
+			tr[i].style.display="";
+		  }else{
+			tr[i].style.display="none";
+		  }
+		}
+	  }
+	};
+</script>
+<script>
+	function exportTableToExcel(tableID){
+    var downloadLink;
+	var filename;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
+</script>
+{% endblock %}

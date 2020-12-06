@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Express Wash Customer Invoice</title>
+    <style>
+        @media print {
+            @page {
+                margin: 0 auto;
+                sheet-size: 300px 250mm;
+            }
+            html {
+                direction: ltr;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0
+            }
+            #printContainer {
+                width: 250px;
+                margin: auto;
+                text-align: justify;
+            }
+            .text-center {
+                text-align: center;
+            }
+            td,
+            th,
+            tr,
+            table {
+                border-top: 1px solid black;
+                border-collapse: collapse;
+            }
+            td.description,
+            th.description {
+                width: 100%;
+                max-width: 100%;
+            }
+            td.quantity,
+            th.quantity {
+                width: 100%;
+                max-width: 100%;
+            }
+            td.price,
+            th.price {
+                width: 100%;
+                max-width: 100%;
+            }
+            .centered {
+                text-align: center;
+                align-content: center;
+            }
+            .ticket {
+                width: 305px;
+                max-width: 305px;
+            }
+            img {
+                max-width: inherit;
+                width: inherit;
+            }
+            @media print {
+                .hidden-print,
+                .hidden-print * {
+                    display: none !important;
+                }
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            .column {
+                border-top: 1px solid black;
+                border-collapse: collapse;
+                width: 100%;
+                display: flex;
+            }
+            .column1 {
+                display: flex;
+                width: 100%;
+                border-collapse: collapse;
+                border-top: 1px solid black;
+            }
+            .btn{
+                display:none !important;
+            }
+        }
+        .column1 .col {
+            margin: 10px;
+            width: 100%;
+            max-width: 100%;
+        }
+        .column .col1 {
+            width: 100%;
+            max-width: 100%;
+            margin-left: 40px;
+        }
+        thead {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        td,
+        th,
+        tr,
+        table {
+            border-top: 1px solid black;
+            border-collapse: collapse;
+        }
+        td.description,
+        th.description {
+            width: 100%;
+            max-width: 100%;
+        }
+        td.quantity,
+        th.quantity {
+            width: 100%;
+            max-width: 100%;
+        }
+        td.price,
+        th.price {
+            width: 100%;
+            max-width: 100%;
+        }
+        .centered {
+            text-align: center;
+            align-content: center;
+        }
+
+        .ticket {
+            width: 310px;
+            max-width:310px;
+        }
+        img {
+            max-width: inherit;
+            width: inherit;
+        }
+        @media print {
+            .hidden-print,
+            .hidden-print * {
+                display: none !important;
+            }
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+        }
+        .column {
+            border-top: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+            display: flex;
+        }
+        .column1 {
+            display: flex;
+            width: 100%;
+            border-collapse: collapse;
+            border-top: 1px solid black;
+        }
+        .column1 .col {
+            margin: 10px;
+            width: 100%;
+            max-width: 100%;
+        }
+        .column .col1 {
+            width: 100%;
+            max-width: 100%;
+            margin-left: 40px;
+        }
+        td
+{
+    padding:0 5px 0 5px;
+}
+.btn-primary {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+    </style>
+</head>
+
+<body onload="window.print();">
+    <h1 id="logo" class=""><img src='/static/img/food1.png' alt='Logo' style="width:60px;"></h1>
+    <div id='printContainer'>
+        <div class="ticket">
+            <img class="centered" src="/static/img/food1.png" alt="Logo" style="width: 200px;margin-left: 42px;">
+            <p class="centered">Brown bakers & Cafe.
+                <br>Infront of icici,,
+                Jawahar road kanha restaurent ,
+                Chhatarpur (M.P.)
+                <br>Phone: +91 9993638380<br>
+                Email: Rakeshraikwar762@gmail.com
+            </p>
+            <div class="column">
+                <div class="col">
+                    <ul>
+                        <li><b>Customer Id :{{cus}}</b></li>
+                        <li><b>Mobile:{{mobile}}</b></li>
+                        <li><b>User:{{name}}</b></li>
+                    </ul>
+                </div>
+                <div class="col1">
+                    <ul>
+                        <li><b>Bill No.:00025</b></li>
+                        <li><b id="date"></b></li>
+                        <li><b id="time"></b></li>
+                    </ul>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Pr</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in org_data %}
+                    <tr>
+                        <td>{{data.Id}}</td>
+                        <td>{{data.Product}}</td>
+                        <td>{{data.Quantity}}</td>
+                        <td>{{data.Price}}</td>
+                        <td>{{data.Ammount}}</td>
+                    </tr>
+                    {% endfor %}
+                   
+                    <tr>
+                        <td>Item: {{item}}</td>
+                        <td>Item Qty: {{quan}}</td>
+                        <td>Total: {{sub}}</td>
+                        <td></td>
+                        <td></td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+            <div class="column1">
+                <div class="col">
+                    <ul>
+                        <li><b>Tax</b></li>
+                        <li><b id="tax">{{tax}}%</b></li>
+                        
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li><b>SGST</b></li>
+                        <li><b>{{sgst}}%</b></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li><b>CGST</b></li>
+                        <li><b>{{sgst}}%</b></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li><b>PAY</b></li>
+                        <li><b>{{total}}</b></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="centered" style="border-top: 1px solid black;padding:0px;margin: 0;border-bottom: 1px solid black;">Rs: {{msg}} Only!!.</p>
+            <!-- <p class="centered" style="border-top: 1px solid black;border-bottom: 1px solid black;"><b>YOU SAVED 10.00
+                </b></p> -->
+            <p class="centered" style="padding:0px;margin: 0;">Thanks for your purchase!
+            </p>
+        </div>
+        <a href="{{url_for('start')}}" class="btn btn-primary">Back</a>
+    </div>
+    <script>
+        let date=new Date();
+        document.getElementById("date").innerHTML=`Date:${date.toLocaleDateString()}`;
+        document.getElementById("time").innerHTML=`Time:${date.toTimeString().slice(0,9)}`;
+    </script>
+</body>
+</html>

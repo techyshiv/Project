@@ -1,0 +1,97 @@
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users-cog"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">No. of Customer</span>
+              <span class="info-box-number">
+                {{cus}}
+                <small></small>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">No. of Executive</span>
+              <span class="info-box-number">{{exen}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1">
+                <i class="fas fa-layer-group"></i>
+              </span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">No. Of Area</span>
+              <span class="info-box-number">{{area}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+<!--
+       
+-->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- /.row -->
+
+      <!-- Main row -->
+        <!-- /.col-md-6 -->
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header border-0">
+            </div>
+            <div class="card-body">
+              <div class="d-flex">
+                <p class="d-flex flex-column">
+                  <span class="text-bold text-lg"><i class="fas fa-rupee-sign"></i>{{total}}</span>
+                  <span>Payment Over Time</span>
+                </p>
+               
+              </div>
+              <div class="position-relative mb-4">
+                <canvas id="sales-chart"></canvas>
+              </div>
+
+              <div class="d-flex flex-row justify-content-end">
+                <span class="mr-2">
+                  <i class="fas fa-square text-primary"></i> This year
+                </span>
+
+                <span>
+                  <i class="fas fa-square text-gray"></i> Last year
+                </span>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      <!-- /.row -->
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->

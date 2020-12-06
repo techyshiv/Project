@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Compose</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Compose</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- /.col -->
+                    <div class="col-md-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Compose</h3>
+                                <div class="container"></div>
+                            </div>
+                            <div>
+                                <div class="{{prop}}">
+                                    <span>{{data3}}</span>
+                                </div>
+                            </div>
+
+
+                            <!-- /.card-header -->
+
+                            <form role="form" id="quickForm" action="/notice/composenotice" method="post">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Area</label>
+                                            <div class="input-group input-group-sm">
+
+
+                                                <select class="form-control select2 select2-danger"
+                                                    data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                                    id="areaid" name="areaid">
+                                                    <option value="">Select</option>
+                                                    <option>All</option>
+                                                    {% if data1==1 %}
+                                                    {% for data in org_data %}
+                                                    <option>{{data.Name}}</option>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                    <option value="3">--NA--</option>
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Executive</label>
+                                            <div class="input-group input-group-sm">
+                                                <select class="form-control select2 select2-danger"
+                                                    data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                                    id="executiveid" name="executiveid">
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Customer</label>
+                                            <div class="input-group input-group-sm">
+                                                <select class="form-control select2 select2-danger"
+                                                    data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                                    id="customerid" name="customerid">
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Select Template</label>
+                                            <div class="input-group input-group-sm">
+                                                <select class="form-control select2 select2-danger"
+                                                    data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                                    id="selecttemplate" name="noticeTemplateId">
+                                                    <option>Select</option>
+                                                    {% if data2==1 %}
+                                                    {% for data in notice %}
+                                                    <option>{{data.NoticeName}}</option>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Subject</label> <input class="form-control" placeholder="Subject:"
+                                            id="subject" name="subject" value="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Body</label>
+                                        <textarea id="body" class="form-control" style="height: 300px"
+                                            name="body" autocomplete="off"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sender Email</label><input class="form-control" placeholder="Sender Email:"
+                                            id="email" name="email" value="" type="email" autocomplete="off">
+                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sender Password</label> <input class="form-control" placeholder="Sender Password:"
+                                            id="password" name="password" value="" type="password" autocomplete="off">
+                                            <span class="form-text text-muted">Make sure you allow less secure option on to send emails.</span>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="date" id="curdate">
+                                <input type="hidden" name="month" id="curmonth">
+                                <input type="hidden" name="full" id="full">
+
+                                <div class="card-footer">
+                                    <div class="float-right">
+
+                                        <button type="submit" class="btn btn-primary" id="send">Send</button>
+
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /.card-body -->
+
+
+
+                            <!-- /.card-footer -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    {% include 'footer.html' %}
+</div>
+<script>
+    $(document).ready(function(){
+        $("#areaid").change(function(){
+            $.ajax({
+                url: '/Invoice/executive?area='+ document.getElementById('areaid').value ,
+                success: function(data) {
+                    console.log(data.Result[0]);
+                    let s="";
+                    s=`<option>Select</option><option>All</option>`;
+                    for(let i=0;i<data.Result.length;i++){
+                        s+=`<option>${data.Result[i].HawkerName}</option>`
+                    }
+                    $('#executiveid').html(s);
+                }
+        });
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        $('#executiveid').change(function(){
+        $.ajax({
+                url: '/Invoice/customer?executive='+ document.getElementById('executiveid').value ,
+                success: function(data) {
+                    console.log(data.Result[0]);
+					let s="";
+					if($("#executiveid").val()=="All"){
+						s=`<option>All</option>`;
+					}
+					else{
+						s=`<option>Select</option>`;
+                    for(let i=0;i<data.Result.length;i++){
+                        s+=`<option>${data.Result[i].CustomerName}</option>`
+                    }
+					}
+                    $('#customerid').html(s);
+                }
+        });
+    });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#selecttemplate").change(function(){
+            let templateid=$(this).val();
+            console.log(templateid);
+            if(templateid=="Select"){
+                $('#subject').val("");
+				$('#body').val("");
+            }
+            else{
+                $.ajax({
+                    'url':'/fetch/notice?id='+templateid,
+                    success:function(data){
+                        console.log(data);
+                        $('#subject').val(data.Result.subject);
+				        $('#body').val(data.Result.mess);
+                    }
+                })
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        let date=new Date();
+        let l=date.toDateString().slice(4);
+        let t1=date.toLocaleString('en-US', { hour: 'numeric',minute:'numeric',second:'numeric', hour12: true })
+        let day = date.toLocaleDateString().slice(3, 5)
+        let month = date.toLocaleDateString().slice(0, 2)
+        let year = date.toLocaleDateString().slice(6, 10)
+        let full = year + "-" + day + "-" + month;
+        $("#curdate").val(l);
+        $("#curmonth").val(t1);
+        $("#full").val(full);
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#send").click(function(){
+            let area=$("#areaid").val();
+            let executive=$("#executiveid").val();
+            let customer=$("#customerid").val();
+            let template=$("#selecttemplate").val();
+            let email=$("#email").val();
+            let password=$("#password").val();
+            let subject=$("#subject").val();
+            let body=$("#body").val();
+            if(area==""){
+                alert("Select Correct area");
+                return false;
+            }
+            if(executive==null && executive=="Select"){
+                alert("Select Correct executive");
+                return false;
+            }
+            if(customer==null){
+                alert("Select Correct customer");
+                return false;
+            }
+            if(template=="Select"){
+                alert("Select Correct template");
+                return false;
+            }
+            if(subject==""){
+                alert("fill your subject");
+                return false;
+            }
+            if(body==""){
+                alert("fill your body");
+                return false;
+            }
+            if(email==""){
+                alert("fill your email");
+                return false;
+            }
+            if(password==""){
+                alert("fill your password");
+                return false;
+            }
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+  <!-- Navbar -->
+  {% include 'nav.html' %}
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  {% include 'sidebar.html' %}
+  <!-- Main Sidebar Container end -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Executive Details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Executive Details</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Executive</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                </div>
+              </div>
+               <div>
+                  <div class="{{prop}}">
+                      <span id="mess">{{data2}}</span>
+                  </div>
+                </div>
+              <div class="card-body p-0">
+                <table class="table" id="myTable">
+                  <thead>
+                    <tr>
+                      <th>Executive Name</th>
+                      <th>Area</th>
+                      <th>Email</th>
+                      <th>Mobile</th>
+                      <th class="text-right py-0 align-middle" id="action">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if data1==1 %}
+                    {% for data in org_data %}
+                    <tr>
+                      <td>{{data.HawkerName}}</td>
+                      <td>{{data.AreaName}}</td>
+                      <td>{{data.Email}}</td>
+                      <td>{{data.MobileNumber}}</td>
+                      <td class="text-right py-0 align-middle">
+                        <div class="btn-group btn-group-sm">
+                          <button class="btn btn-primary updatebtn"><i class="fas fa-edit">
+                            </i></button>
+                          <button class="btn btn-info viewbtn"><i class="fas fa-eye"></i>
+                          </button>
+                          <button class="btn btn-danger deletebtn"><i
+                              class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <button class="btn btn-primary" id="download">Download Pdf</button>
+            <a href="" class="btn btn-primary" id="refresh">Refresh</a>
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<script>
+  $(document).ready(function(){
+    $('.table tbody').on('click','.updatebtn',function(){
+      var currow=$(this).closest('tr');
+      var col1=currow.find('td:eq(0)').text();
+      var col2=currow.find('td:eq(1)').text();
+      result=col1+'\n'+col2;
+      if(result!=""){
+        window.open("/Edit/Executive/?id=" + col1,"_self");
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('.table tbody').on('click','.viewbtn',function(){
+      var currow=$(this).closest('tr');
+      var col1=currow.find('td:eq(0)').text();
+      var col2=currow.find('td:eq(1)').text();
+      result=col1+'\n'+col2;
+      if(result!=""){
+        window.open("/View/Executive/?id=" + col1,"_self");
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    $('.table tbody').on('click','.deletebtn',function(){
+      var currow=$(this).closest('tr');
+      var col1=currow.find('td:eq(0)').text();
+      var col2=currow.find('td:eq(1)').text();
+      result=col1+'\n'+col2;
+      if(result!=""){
+        window.open("/delete/Executive/?id=" + col1,"_self");
+      }
+    });
+  });
+</script>
+
+<script>
+	window.onload = function () {
+		document.getElementById("download").addEventListener("click", () => {
+      $(".updatebtn").hide();
+      $(".viewbtn").hide();
+      $(".deletebtn").hide();
+      $("#action").hide();
+			const invoice = document.getElementById("myTable");
+			console.log(invoice);
+			var opt = {
+				margin: 1,
+				filename: 'Executive.pdf',
+				image: { type: 'jpeg', quality: 0.98 },
+				html2canvas: { scale: 1 },
+				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			};
+			html2pdf().from(invoice).set(opt).save();
+		});
+	}
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('#refresh').click(function(){
+      $(".updatebtn").show();
+      $(".viewbtn").show();
+      $(".deletebtn").show();
+      $("#action").show();
+    });
+  });
+</script>
+
+{% endblock %}

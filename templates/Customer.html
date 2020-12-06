@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+  
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+     <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Customer</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Customer Management/Add Customer</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+     <!-- Main content -->
+     <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- jquery validation -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Add Customer<small></small></h3>
+                </div>
+                <div>
+                  <div class="{{prop}}">
+                    <span>{{data1}}</span>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" id="quickForm" method="POST" action="/AddCustomer">
+                  <div class="card-body">
+                      <div class="form-group">
+                    <label>Executive Name</label>
+                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" name="Executive" id="executive">
+                      <option selected="selected">Select</option>
+                      {% for data in org_data %}
+                      <option>{{data}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Customer Name</label>
+                      <input type="text" name="cname" class="form-control" id="cusname" placeholder="Customer Name" autocomplete="off">
+                    </div>  
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Customer ID</label>
+                      <input type="text" name="cusid" class="form-control" id="cusid" placeholder="Customer ID" autocomplete="off">
+                    </div>               
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Father Name</label>
+                      <input type="text" name="fname" class="form-control" id="fname" placeholder="Father name" autocomplete="off">
+                    </div>  
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Address</label>
+                      <input type="text" name="address" class="form-control" id="address" placeholder="Address" autocomplete="off">
+                    </div>       
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Mobile Number</label>
+                      <input type="number" name="mobile" class="form-control" id="mobile" placeholder="Mobile Number" autocomplete="off">
+                    </div>  
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Whatsapp Number</label>
+                      <input type="number" name="what" class="form-control" id="whatsapp" placeholder="Whatsapp Number" onchange="inputchange()" required autocomplete="off">
+                    </div>     
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Email" aria-describedby="emailHelp" required autocomplete="off">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      <div class="valid-feedback">
+                        <i class="far text-success fa-thumbs-up"></i> OK
+                      </div>
+                      <div class="invalid-feedback">
+                        <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Email.
+                      </div>
+                    </div>  
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Start Date</label>
+                      <input type="date" name="startdate" class="form-control" id="dates" placeholder="Write in DD-MM-YY format">
+                    </div> 
+                      <div class="form-group">
+                      <label for="exampleInputEmail1">Date of Birth</label>
+                      <input type="date" name="enddate" class="form-control" id="datee" placeholder="Write in DD-MM-YY format">
+                    </div>      
+                            <div class="form-group">
+                    <label>Gender</label>
+                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" name="gender" id="gender">
+                      <option selected="selected">Select</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                    
+               
+                  <!-- /.form-group -->
+                </div>           
+       
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" id="btnsubmit" class="btn btn-primary">Add</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+              </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+  
+            </div>
+            <!--/.col (right) -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+            
+      </section>
+      <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<script>
+  function inputchange(event){
+    var phoneno = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+    let what=$("#whatsapp").val();
+    if(what.match(phoneno)){
+      return true;
+    }else{
+      alert("Whatsapp Number is Invalid");
+      return false;
+    }
+  }
+</script>
+<script>
+  $(document).ready(function(){
+    $("#btnsubmit").click(function(){
+      let exename=$("#executive").val();
+      let cname=$("#cusname").val();
+      let cusid=$("#cusid").val();
+      let fname=$("#fname").val();
+      let address=$("#address").val();
+      let mobile=$("#mobile").val();
+      let email=$("#email").val();
+      let start=$("#dates").val();
+      let end=$("#datee").val();
+      let gender=$("#gender").val();
+      var phoneno = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+      if(exename=="Select"){
+        alert("Please fill executive details");
+        return false;
+      }
+      if(cname==""){
+        alert("Please fill Customer Name");
+        return false;
+      }
+      if(cusid==""){
+        alert("Please fill Customer Id.");
+        return false;
+      }
+      if(fname==""){
+        alert("Please fill Father name");
+        return false;
+      }
+      if(address==""){
+        alert("Please fill address details");
+        return false;
+      }
+      if(mobile==""){
+        alert("Please fill mobile details");
+        return false;
+      }
+      if(mobile.match(phoneno)){
+        return true;
+        }
+      else
+        {
+        alert("Mobile Number is invalid");
+        return false;
+        }      
+      if(email==""){
+        alert("Please fill email details");
+        return false;
+      }
+      if(start==""){
+        alert("Please fill date details");
+        return false;
+      }
+      if(end==""){
+        alert("Please fill date details");
+        return false;
+      }
+      if(gender=="Select"){
+        alert("Please Choose gender either male or female details");
+        return false;
+      }
+    });
+  });
+</script>
+
+{% endblock %}

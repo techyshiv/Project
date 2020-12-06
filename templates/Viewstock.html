@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    {% include 'nav.html' %}  
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+     <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>View Stock Master</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Stock Management/View StockMaster</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <!-- Main content -->
+              <div class="invoice p-3 mb-3">
+                <!-- title row -->        
+                <!-- info row -->         
+                <!-- /.row -->  
+                <!-- Table row -->
+                <div class="row">
+                <div class="container">
+                  <form role="form" id="quickForm" method="POST" action="">
+                            <div class="card-body">
+                    <div class="container">
+                <div class="form-group">
+                      <label>Select Product </label>
+                        <div class="input-group input-group-sm">
+         <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" name="product">
+                      <option selected="selected">All</option> 
+                      {% for item in values %}
+                      <option>{{item.ProductName}}</option>
+                      {% endfor %}
+                    </select>
+                           </div></div>              
+                     
+                    </div>
+  
+                 
+            </div>
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <table class="table table-bordered table-hover" id="tab_logic">
+          <thead>
+            <tr>
+              <th class="text-center"> # </th>
+              <th class="text-center">Ingredients</th>
+             <th class="text-center"> Quantity </th>
+              <th class="text-center">Unit </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id='addr0'>
+              <td>1</td>
+            <td><input type="text" name='ingredients[]'  placeholder='Ingredients' class="form-control"/></td>
+                <td><input type="text" name='quantity[]'  placeholder='Quantity' class="form-control"/></td>
+             
+              <td><input type="text" name='unit[]' placeholder='Unit' class="form-control price"/></td>
+             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+  
+  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+   
+            
+                <!-- /.row -->
+  
+                <!-- this row will not appear when printing -->
+                <div class="row no-print">
+                  <div class="col-12">
+                    <button type="button" id="firstbtn" class="btn btn-primary float-right">Save
+                    </button>
+                  </div>
+                  
+                </div>
+                
+                
+              </div>
+              <!-- /.invoice -->
+            </div><!-- /.col -->
+          </form>
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+            
+      </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+
+
+{% endblock %}

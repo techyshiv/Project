@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+	<!-- Navbar -->
+	{% include 'nav.html' %}
+	<!-- /.navbar -->
+
+	<!-- Main Sidebar Container -->
+	{% include 'sidebar.html' %}
+	<!-- Main Sidebar Container end -->
+	<!-- Content Wrapper. Contains page content -->
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>View Invoice</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="/">Home</a></li>
+							<li class="breadcrumb-item active">View Invoices</li>
+						</ol>
+					</div>
+
+
+
+					<div class="col-sm-3"></div>
+					<div class="col-sm-2"></div>
+
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+
+					<!-- left column -->
+					<div class="col-md-12">
+						<div class="row">
+
+							<div class="col-md-4">
+
+								<div class="form-group">
+
+									<input type="radio" checked="checked" name="radiobutton" id="radiobutton1">
+									<label>Select Duration</label> <select class="form-control select2 select2-danger"
+										data-dropdown-css-class="select2-danger" style="width: 100%;" name="duration"
+										id="duration">
+										<option selected="selected">Today</option>
+
+										<option value="all">All</option>
+
+									</select>
+
+								</div>
+
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+
+									<input type="radio" name="radiobutton" id="radiobutton2">
+
+									<label>From Date:</label> <input type="date" disabled class="form-control"
+										style="width: 100%;" name="from" id="from">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+
+									<label>To Date:</label> <input type="date" disabled class="form-control"
+										style="width: 100%;" name="to" id="to">
+								</div>
+							</div>
+
+
+
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Area </label> <select class="form-control select2 select2-danger"
+										data-dropdown-css-class="select2-danger" style="width: 100%;" id="areaid">
+										<option>Select</option>
+										<option>All</option>
+										{% if data1==1 %}
+										{% for item in area %}
+										<option>{{item.Name}}</option>
+										{% endfor %}
+										{% endif %}
+
+									</select>
+								</div>
+							</div>
+
+
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Executive</label>
+									<select class="form-control select2 select2-danger"
+										data-dropdown-css-class="select2-danger" style="width: 100%;" id="executiveid">
+										<option>Select</option>
+									</select>
+								</div>
+							</div>
+
+
+
+
+							<div class="col-md-3">
+
+								<label>Customer</label>
+								<select class="form-control select2 select2-danger"
+									data-dropdown-css-class="select2-danger" style="width: 100%;" id="customerid">
+								</select>
+
+
+							</div>
+
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<button class="btn btn-primary form-control" type="submit" style="margin-top: 30px"
+										id="btnSubmit">Search</button>
+								</div>
+							</div>
+
+
+						</div>
+						<button class="btn btn-primary mb-3" id="download">Download Pdf</button>
+						<!-- jquery validation -->
+						<div class="card card-info">
+							<div class="card-header">
+								<h3 class="card-title">View Invoice</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse"
+										data-toggle="tooltip" title="Collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+								</div>
+							</div>
+							<div class="card-body p-0">
+								<table class="table table-responsive" id="example">
+									<thead>
+										<tr>
+											<th>Invoice Id</th>
+											<th>Customer Name</th>
+											<th>Subtotal</th>
+											<th>Tax Amount</th>
+											<th>Grand Total</th>
+
+										</tr>
+									</thead>
+									<tbody id="tablerow">
+
+
+
+									</tbody>
+								</table>
+
+							</div>
+
+							<!-- /.card-body -->
+						</div>
+						<div class="small_loader" id="small_loader1"></div>
+						<!-- /.card -->
+					</div>
+					<!--/.col (left) -->
+					<!-- right column -->
+					<div class="col-md-6"></div>
+					<!--/.col (right) -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+	<!-- /.content-wrapper -->
+	{% include 'footer.html' %}
+</div>
+<!-- <script>
+	$(document)
+	.ready(
+			function() {
+				
+				$("#date").prop('disabled', true);	
+				$("#date").val('');
+				
+				
+			});
+</script> -->
+<script>
+	$(document).ready(function () {
+		$('#radiobutton2').on('change', function () {
+			console.log($("#duration").val());
+			if ($("#duration").val() != "Today") {
+				$("#from").prop('disabled', false);
+				document.getElementById('from').valueAsDate = new Date();
+
+				$("#to").prop('disabled', false);
+				document.getElementById('to').valueAsDate = new Date();
+				$("#duration").prop('disabled', true);
+			}
+		});
+
+		$('#radiobutton1').on('change', function () {
+			$("#duration").prop('disabled', false);
+			$("#duration").val('all');
+			$("#from").prop('disabled', true);
+			$("#from").val('');
+			$("#to").prop('disabled', true);
+			$("#to").val('');
+
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function () {
+		$("#areaid").change(function () {
+			$.ajax({
+				url: '/Invoice/executive?area=' + document.getElementById('areaid').value,
+				success: function (data) {
+					console.log(data.Result[0]);
+					if($("#areaid").val()=="All"){
+						let s = `<option>All</option>`
+						$('#executiveid').html(s);
+						$('#customerid').html(s);
+					}
+					else{
+						let s = `<option>Select</option><option>All</option>`;
+						for (let i = 0; i < data.Result.length; i++) {
+							s += `<option>${data.Result[i].HawkerName}</option>`
+						}
+						$('#executiveid').html(s);
+					}
+				}
+			});
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function () {
+		$('#executiveid').change(function () {
+			$.ajax({
+				url: '/Invoice/customer?executive=' + document.getElementById('executiveid').value,
+				success: function (data) {
+					console.log(data.Result[0]);
+					let exeid=$("#executiveid").val();
+					let s="";
+					if(exeid=="All"){
+						s = `<option>All</option>`;
+					}
+					else{
+						s = `<option>Select</option>`;
+						for (let i = 0; i < data.Result.length; i++) {
+						s += `<option>${data.Result[i].CustomerName}</option>`
+					}
+					}
+					$('#customerid').html(s);
+				}
+			});
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function () {
+		$("#btnSubmit").click(function () {
+			var from = $("#from").val();
+			var to = $("#to").val();
+			var duration = $("#duration").val();
+			var areaid = $("#areaid").val();
+			var executiveid = $("#executiveid").val();
+			var customerid = $("#customerid").val();
+			let date = new Date();
+			let full = date.toLocaleDateString();
+			var details = from + "," + to + "," + customerid + "," + duration + "," + executiveid + "," + full;
+
+			console.log(from + to + duration + areaid + executiveid + customerid);
+			$.ajax({
+				url: "/Invoice/getdata/?pro=" + details,
+				success: function (data) {
+					if(data.Result.length>0){
+						// alert("Success");
+						for(let i=0;i<data.Result.length;i++){
+					        $("#tablerow").append(`<tr><td>${data.Result[i]["Id"]}</td><td>${data.Result[i]["Name"]}</td><td>${data.Result[i]["SubTotal"]}</td><td>${data.Result[i]["TaxAmmount"]}</td><td>${data.Result[i]["GrandTotal"]}</td></tr>`);
+					    }
+					}else{
+						if(areaid=="Select"){
+							alert("Please select area fields");
+							return false;
+						}
+						if(executiveid=="Select"){
+							alert("Please select executive fields");
+							return false;
+						}
+						if(customerid=="Select"){
+							alert("Please select customer fields");
+							return false;
+						}
+						else{
+							alert("Data Not Found");
+							console.log(areaid);
+							$("#areaid").val("Select");
+							$("#executiveid").val("");
+							$("#customerid").val("");
+						}
+					}
+										// if(data!="No Data Found"){
+					//     console.log(data.Details[0]["Id"]);
+					//    
+					// }
+					// else{
+					//     alert("Data Not Found Please select Correct Data");
+					// }
+				}
+			});
+			// $("#small_loader1").show();
+		});
+	});
+</script>
+
+<script>
+	window.onload = function () {
+		document.getElementById("download").addEventListener("click", () => {
+			const invoice = document.getElementById("example");
+			console.log(invoice);
+			var opt = {
+				margin: 1,
+				filename: 'invoice.pdf',
+				image: { type: 'jpeg', quality: 0.98 },
+				html2canvas: { scale: 1 },
+				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			};
+			html2pdf().from(invoice).set(opt).save();
+		});
+	}
+</script>
+
+{% endblock %}

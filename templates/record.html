@@ -1,0 +1,423 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Record</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Customer Management/Record</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- jquery validation -->
+
+
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Record</h3>
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Area Name</label>
+                                            <select class="form-control select2 select2-danger" id="area"
+                                                data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                <option selected="selected">Select.</option>
+                                                <option>All</option>
+                                                {% if data1==1 %}
+                                                {% for item in new_data %}
+                                                <option>{{item.Name}}</option>
+                                                {% endfor %}
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Executive Name</label>
+                                            <select class="form-control select2 select2-danger" id="exename"
+                                                data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <input type="hidden" id="hiddenname">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button class="btn btn-primary form-control" type="submit"
+                                                style="margin-top: 30px" id="firstbtn">Search</button>
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <div class="card-body">
+
+                            <div id="tab">
+
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Customer Name</th>
+                                            <th>Customer Id</th>
+                                            <th>Executive Name</th>
+                                            <th>Father Name</th>
+                                            <th>Address</th>
+                                            <th>Phone Number</th>
+                                            <th>WhatsApp Number</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                        
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+                <!-- /.container-fluid -->
+            </div>
+        </section>
+        <!-- The Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--          <h4 class="modal-title">Modal Header</h4>-->
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <!--                <h3 class="card-title">Fees Card</h3>-->
+
+
+                                        <div class="container">
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <img src="/static/img/avatar.png" height="auto" width="80%"
+                                                        style="padding: 10px">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p id="cusname"><b>Name</b>:</p>
+                                                    <p id="fname"><b>Father Name</b>: </p>
+                                                    <p id="add"><b>Address</b>: </p>
+                                                    <p id="mob"><b>Phone No.</b>: </p>
+
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p id="what"><b>Whatsapp No.</b>:</p>
+                                                    <p id="cusid"><b>Whatsapp No.</b>:</p>
+                                                    <p id="em"><b>Email</b>:  </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Month</label>
+                                        <select class="form-control select2 select2-danger"
+                                            data-dropdown-css-class="select2-danger" style="width: 100%;" id="month">
+                                            <option selected="selected">--Select Month--</option>
+
+                                            <option>Janaury</option>
+                                            <option>February</option>
+                                            <option>March</option>
+                                            <option>April</option>
+                                            <option>May</option>
+                                            <option>June</option>
+                                            <option>July</option>
+                                            <option>August</option>
+                                            <option>September</option>
+                                            <option>October</option>
+                                            <option>November</option>
+                                            <option>December</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary form-control" type="submit"
+                                            style="margin-top: 30px" id="viewbtn">Search</button>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <!-- jquery validation -->
+
+
+
+                            <!-- /.card-header -->
+                            <h3>Payment Record </h3>
+                            <div class="card-body">
+                                <table id="sTable7" class="table table-bordered table-striped display">
+                                    <thead>
+                                        <tr>
+                                            <th>SNo.</th>
+
+                                            <th>Product</th>
+                                            <th>Quanttity</th>
+                                            <th>Price</th>
+                                            <th>Amount</th>
+                                            <th> Mode Of Payment</th>
+                                            <th>Payment Status</th>
+                                            
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="viewrow">
+                                        
+                                    </tbody>
+
+                                </table>
+                                <div class="mt-3">
+                                    <button onclick="myfun('modal-body')" value="" class="btn btn-primary">Download Pdf</button>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+    <div class="col-md-6">
+
+    </div>
+    <!--/.col (right) -->
+</div>
+<!-- /.row -->
+</div><!-- /.container-fluid -->
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% include 'footer.html' %}
+</div>
+<script>
+    $(document).ready(function(){
+        $('#area').change(function(){
+            $.ajax({
+                url: '/Invoice/executive?area='+ document.getElementById('area').value ,
+                success: function(data) {
+                    console.log(data.Result[0]);
+                    if($("#area").val()=="All"){
+                        let s = `<option>All</option>`
+                        $('#exename').html(s);
+                    }
+                    else{
+                        let s=`<option>Select</option>`;
+                        for(let i=0;i<data.Result.length;i++){
+                            s+=`<option>${data.Result[i].HawkerName}</option>`
+                        }
+                        $('#exename').html(s);
+                    }
+                }
+        });
+    });
+    });
+</script>
+<script>
+    $(function () {
+        let count=0;
+        $('#firstbtn').click(function () {
+            count+=1;
+            console.log(count);
+            let name = $('#area').val();
+            let exename = $('#exename').val();
+            let final = []
+            let final2 = []
+            let final3 = []
+            $.ajax({
+                url: '/ViewRecord',
+                data: { "name": name, "exename": exename },
+                type: 'POST',
+                success: function (response) {
+                    console.log(response.Result);
+                    if(response.Result.length>0){
+                      for(let i=0;i<response.Result.length;i++){
+                        $('#tbody').append(`<tr id="${i+1}"><td>${i+1}</td><td>${response.Result[i]["CustomerName"]}</td><td>${response.Result[i]["CustomerId"]}</td><td>${response.Result[i]["ExecutiveName"]}</td><td>${response.Result[i]["FatherName"]}</td><td>${response.Result[i]["Address"]}</td><td>${response.Result[i]["MobileNumber"]}</td><td>${response.Result[i]["WhatsAppNumber"]}</td><td>${response.Result[i]["Email"]}</td><td><button id="${i+1}" class="btn btn-info btnsubmit"><a href="#" class = "text-white" data-toggle="modal"
+                                                    data-target="#myModal">View</a></button></td></tr>`);
+                      }
+                    
+                    }else{
+                        alert("Data Not Found");
+                        }
+                    $(".btnsubmit").click(function(){
+                        $("#viewrow").empty();
+                    });
+                    
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
+</script>
+<script>
+    $('.table tbody').on('click','.btnsubmit',function(){
+        var currow=$(this).closest('tr');
+        var col1=currow.find('td:eq(0)').text();
+        var col2=currow.find('td:eq(1)').text();
+        var col3=currow.find('td:eq(2)').text();
+        var col4=currow.find('td:eq(3)').text();
+        var col5=currow.find('td:eq(4)').text();
+        var col6=currow.find('td:eq(5)').text();
+        var col7=currow.find('td:eq(6)').text();
+        var col8=currow.find('td:eq(7)').text();
+        var col9=currow.find('td:eq(8)').text();
+        var result=col1+'\n'+col2+'\n'+col3+'\n'+col4+'\n'+col5+'\n'+col6+'\n'+col7+'\n'+col8+'\n'+col9;
+        $('#cusname').html(`Name : ${col2}`);
+        $('#fname').html(`Father Name : ${col5}`);
+        $('#add').html(`Address: ${col6}`);
+        $('#mob').html(`Mobile : ${col7}`);
+        $('#what').html(`WhatsApp : ${col8}`);
+        $('#em').html(`Email : ${col9}`);
+        $('#cusid').html(`Customer Id : ${col3}`);
+        $('#hiddenname').val(col3);
+        // alert(result);
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#viewbtn").click(function(){
+            let month=$("#month").val();
+            let cusid=$("#hiddenname").val();
+            // console.log(cname);
+            $.ajax({
+                url:"/RecordView",
+                data:{"month":month,"cusname":cusid},
+                type:"POST",
+                success:function(data){
+                    console.log(data.Result);
+                    if(data.Result[0]!="No Data Found"){
+                    for(let i=0;i<data.Result.length;i++){
+                        for(let j=0;j<data.Result[i]["Product"].length;j++){
+                            $("#viewrow").append(
+                                `
+                                <tr>
+                                    <td>${j+1}</td>
+                                    <td>${data.Result[i]["Product"][j]}</td>
+                                    <td>${data.Result[i]["Quantity"][j]}</td>
+                                    <td>${data.Result[i]["Price"][j]}</td>
+                                    <td>${data.Result[i]["Ammount"][j]}</td>
+                                    <td>${data.Result[i]["PaymentMode"]}</td>
+                                    <td>${data.Result[i]["PaymentStatus"]}</td>
+                                `
+                            )
+                        }
+                    }
+                    }else{
+                        alert("Data Not Found");
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    function myfun(paravalue){
+        var backup=document.body.innerHTML;
+        var divcontent=document.getElementById("modal-body").innerHTML;
+        var opt = {
+				margin: 1,
+				filename: 'record.pdf',
+				image: { type: 'jpeg', quality: 0.98 },
+				html2canvas: { scale: 7 },
+				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			};
+		html2pdf().from(divcontent).set(opt).save();
+    }
+</script>
+
+
+{% endblock %}

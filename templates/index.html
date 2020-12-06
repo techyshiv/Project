@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="wrapper">
+
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+  
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Brown bakers & Cafe</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{url_for('start')}}">Home</a></li>
+                <li class="breadcrumb-item active"></li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+      
+      <!-- Main Content -->
+      {% include 'section_content.html' %}
+
+      <!-- Main content end -->
+      
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  
+    <!-- Main Footer -->
+    {% include 'footer.html' %}
+  </div>
+  <!-- ./wrapper -->
+  <script src="{{url_for('static',filename='js/getdata.js')}}">
+  </script>
+  <script>
+    $(document).ready(function(){
+      let customchart=document.getElementById("sales-chart").getContext("2d");
+      let monthdata=[];
+      let paymentdata=[];
+      $.ajax({
+        url:'/getjson',
+        success:function(data){
+          console.log(data.Result);
+          let month;
+          for(let i=0;i<data.Result.length;i++){
+            month=data.Result[i]["Month"]
+            paymentdata.push(data.Result[i]["Payment"])
+            monthdata.push(month);
+          }
+          console.log(monthdata);
+          console.log(paymentdata);
+          let PaymentChart=new Chart(
+      customchart,{
+        type:"bar",
+        data:{
+            labels:monthdata,
+            datasets:[
+                {
+                    label:"No. of payments in Month",
+                    data:paymentdata,
+                    backgroundColor:[
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                        "rgba(0,176,275,0.6)",
+                    ],
+                    borderColor:[
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                        "rgba(0,176,275,1)",
+                    ],
+                    borderWidth:2
+                },
+            ],
+        },
+        options:{
+            scales:{
+                yAxis:[
+                    {
+                        ticks:{
+                            beginAtZero:true,
+                        }
+                    }
+                ]
+            }
+        }
+
+    }
+);              
+        }
+      });
+     
+     
+    });
+  </script>
+
+
+{% endblock %}

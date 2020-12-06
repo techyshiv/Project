@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Invoice</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Invoice</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="callout callout-info">
+                            <h5>
+                                <i class="fas fa-info"></i> Note:
+                            </h5>
+                            This page has been enhanced for printing. Click the print button
+                            at the bottom of the invoice to test.
+                        </div>
+
+
+                        <!-- Main content -->
+                        <div class="invoice p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>
+                                        <i class="fas fa-globe"></i> Brown bakers & Cafe, 
+                                    </h4>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            <div class="row invoice-info">
+                                <div class="col-sm-4 invoice-col">
+                                    From
+                                    <address>
+                                        <strong>Brown bakers & Cafe</strong><br />
+                                        Infront of icici, <br />
+                                        Jawahar road kanha restaurent ,<br />
+                                        Chhatarpur (M.P.)<br />
+                                        Phone: +91 9993638380<br />
+                                        Email: Rakeshraikwar762@gmail.com
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 invoice-col">
+                                    To
+
+                                    <address>
+                                        <strong>{{name}}</strong><br>
+                                        <div>{{add}}</div>
+                                        <div>{{mob}}</div>
+                                        <div>{{emails}}</div>
+                                        
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 invoice-col">
+
+                                    
+                                    <input type="hidden" value="{{id}}" id="invoice">
+                                    
+                                    <b>Invoice ID : <span>{{id}}</span></b>
+                                    <br> <b>Invoice Date</b> :<span>{{date}}-{{month}}-{{year}}</span><br> 
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <!-- Table row -->
+                            <div class="row">
+                                <div class="container">
+                                    <div class="card-body">
+                                        
+
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered table-hover"
+                                                id="tab_logic">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th class="text-center">Product</th>
+                                                        <th class="text-center">Quantity</th>
+                                                        <th class="text-center">Price</th>
+                                                        <th class="text-center">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for i in length %}
+                                                    {% set item_1 = length[loop.index-1] %}
+                                                    {% set item_2 = product[loop.index-1] %}
+                                                    {% set item_3 = quan[loop.index-1] %}
+                                                    {% set item_4 = price[loop.index-1] %}
+                                                    {% set item_5 = amm[loop.index-1] %}
+                                                   <tr>
+                                                         <td> {{ item_1 }} </td>
+                                                         <td>  {{ item_2 }} </td>
+                                                         <td>{{item_3}}</td>
+                                                         <td>{{item_4}}</td>
+                                                         <td>{{item_5}}</td>
+
+                                                  </tr>
+                                              {% endfor %}
+                                                    <tr id='addr1'></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="row clearfix" style="margin-top: 20px">
+                                        <div class="pull-right col-md-4">
+                                            <table class="table table-bordered table-hover"
+                                                id="tab_logic_total">
+                                                <tbody>
+                                                    <tr>
+                                                        <th class="text-center">Sub Total</th>
+                                                        <td class="text-center">Rs. <span>{{sub}}</span></td>
+                                                    </tr>
+                                                    <!--
+        <tr>
+        <th class="text-center">Discount</th>
+        <td class="text-center">Rs. 0</td>
+      </tr>
+-->
+                                                    <tr>
+                                                        <th class="text-center">Tax %</th>
+                                                        <td class="text-center"><span>{{tax}}</span></td>
+                                                                
+                                                            
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center">Tax Amount</th>
+                                                        <td class="text-center">Rs. <span>{{taxam}}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center">Grand Total</th>
+                                                        <td class="text-center">Rs. <span>{{total}}</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+
+                            <!-- /.row -->
+
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class="col-12">
+                                    <a href="{{url_for('print_bill',id=id)}}" class="btn btn-primary" id="generate">Generate Bill</a>
+                                    <button type="button" class="btn btn-success float-right" id="markpaymentreceived">
+                                        <i class="far fa-credit-card"></i> Mark Payment as Received
+                                    </button>
+                                    <button type="button" class="btn btn-primary float-right"
+                                        style="margin-right: 5px;"  id="savetodb">
+                                        <i class="fas fa-download"></i> Save to Database
+                                    </button>
+                                </div>
+                            </div>																
+                        </div>
+                        <!-- /.invoice -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% include 'footer.html' %}
+</div>
+<script>
+    $(function(){
+        let status="Pending";
+        let count=0;
+        $("#savetodb").click(function(){
+            if(count==0){
+                alert("Please Select First Mark Payment Read");
+                return false;
+            }else{
+                alert(`Data Saved in Database Successfully\nPayment Status=${status}`);
+                $('#savetodb').prop('disabled', true);
+            }
+        });
+        $("#generate").click(function(){
+            if(count==0){
+                alert("Please Select First Mark Payment Read");
+                return false;
+            }else{
+                alert(`Data Saved in Database Successfully\nPayment Status=${status}`);
+                $('#savetodb').prop('disabled', true);
+            }
+        });
+        $("#markpaymentreceived").click(function(){
+            status="Success";
+            count+=1
+            alert(`Payment Marked As Read.\nPayment Status=Success`);
+            $('#markpaymentreceived').prop('disabled', true);
+            $.ajax({
+                url:"/Invoice/Payment/Success?pro="+document.getElementById("invoice").value,
+                success:function(data){
+                    console.log("Success");
+                }
+            })
+        });
+    });
+</script>
+<script>
+     var myTab = document.getElementById('tab_logic');
+        for (i = 1; i < myTab.rows.length; i++) {
+            var objCells = myTab.rows.item(i).cells;
+            for (var j = 0; j < objCells.length; j++) {
+                console.log(objCells.item(j).innerHTML);
+            }
+        }
+</script>
+
+{% endblock %}

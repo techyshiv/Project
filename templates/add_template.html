@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add Notice Template</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Add Notice</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row container">
+
+                    <!-- /.col -->
+                    <div class="col-md-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Notice</h3>
+                                <div class="container">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="{{prop}}">
+                                    <span>{{data1}}</span>
+                                </div>
+                            </div>
+
+
+                            <!-- success message -->
+
+                            <form action="/addnotice" method="post">
+                                <div class="form-group container">
+                                    <label for="name">Notice Name</label>
+                                    <input class="form-control" name="Notice" id="name" placeholder="Notice Name"
+                                        value="" autocomplete="off">
+                                </div>
+
+                                <div class="form-group container">
+                                    <label for="name">Subject</label>
+                                    <input class="form-control" name="Sub" id="subject" placeholder="Subject" value="" autocomplete="off">
+                                </div>
+                                <div class="form-group container">
+                                    <label for="name">Body</label>
+                                    <textarea id="compose-textarea" name="mess" class="form-control"
+                                        style="height: 300px" autocomplete="off"></textarea>
+                                </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <div class="float-right">
+
+                                <button type="submit" class="btn btn-primary" id="Add">Add</button>
+                            </div>
+
+                        </div>
+
+                        </form>
+                        <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{% include 'footer.html' %}
+</div>
+<script>
+    $(document).ready(function () {
+        $("#Add").click(function () {
+            let Notice_Name = $("#name").val();
+            let Subject = $("#subject").val();
+            let mess = $('#compose-textarea').val();
+            if (Notice_Name == "") {
+                alert("Fill Notice name.")
+                return false;
+            }
+            if (Subject == "") {
+                alert("Fill Subject.")
+                return false;
+            }
+            if (mess == "") {
+                alert("Fill body.")
+                return false;
+            }
+        });
+    });
+</script>
+{% endblock %}
