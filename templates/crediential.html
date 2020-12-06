@@ -1,0 +1,116 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+
+   <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Assign Credentials</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">Assign Credentials</li>
+              <li class="breadcrumb-item active">Executive</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Executive</h3>
+
+                <div class="card-tools">
+                  <button
+                    type="button"
+                    class="btn btn-tool"
+                    data-card-widget="collapse"
+                    data-toggle="tooltip"
+                    title="Collapse"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+              
+              
+
+              <div class="card-body p-0">
+                <table class="table table-responsive">
+                  <thead>
+                    <tr>
+                      <th>Executive Name</th>
+                      <th>Area</th>
+                      <th>WhatsApp Number</th>
+                      <th>Register</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% if data1==1 %}
+                      {% for data in org_data %}
+                      <tr>
+                          <td>{{data.Name}}</td>
+                          <td>{{data.Area}}</td>
+                          <td>{{data.What}}</td>
+                          <td class="text-right py-0 align-middle">
+                            <div class="btn-group btn-group-sm">
+                                {% if data.data2==1 %}
+                              <small><i class="far fa-check-circle" style='font-size:12px;color:green'></i> Registred</small>
+                                {% else %}
+                                <a href="{{url_for('assign',id=data.Id)}}"
+                                class="btn btn-primary"><i class="fas fa-tasks"> </i>Register</a>
+                                {% endif %}
+                            </div>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6"></div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+    {% include 'footer.html' %}
+</div>
+
+{% endblock %}

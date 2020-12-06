@@ -1,0 +1,10 @@
+[
+    {
+        "Name": "admin",
+        "Password": "admin123",
+        "ConfirmPassword": "admin123",
+        "Mobile": "8786858490",
+        "Id": 1,
+        "Email": "admin@gmail.com"
+    }
+]

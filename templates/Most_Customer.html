@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    <!-- Navbar -->
+    {% include 'nav.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+    <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Most Frequent Customers</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Most Frequent</li>
+                        <li class="breadcrumb-item active">Customers</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- jquery validation -->
+                    
+                    
+                    
+                    
+                    
+                    <div class="container">
+                            
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Month</label> 
+                                            
+                                             <select
+                                                class="form-control select2 select2-danger"
+                                                data-dropdown-css-class="select2-danger"
+                                                style="width: 100%;" id="month">
+                                                
+                                                <option>Select</option>
+                                                <option>Janaury</option>
+                                                <option>February</option>
+                                                <option>March</option>
+                                                <option>April</option>
+                                                <option>May</option>
+                                                <option>June</option>
+                                                <option>July</option>
+                                                <option>August</option>
+                                                <option>September</option>
+                                                <option>October</option>
+                                                <option>November</option>
+                                                <option>December</option>
+
+                                            </select>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Year</label>
+                                            
+                                            <select
+                                                class="form-control select2 select2-danger"
+                                                data-dropdown-css-class="select2-danger"
+                                                style="width: 100%;" id="year">
+                                                
+
+                                                <option>2020</option>
+                                                <option>2021</option>
+                                                <option>2022</option>
+                                                <option>2023</option>
+                                                <option>2024</option>
+                                                <option>2025</option>
+                                                <option>2026</option>
+                                                <option>2027</option>
+                                                <option>2028</option>
+                                                <option>2029</option>
+                                                
+
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <div style="width: 100%;">
+                                                <button type="submit" class="btn btn-primary" style="margin-top : 30px" id="Search">Search</button>
+                                            </div>
+                                        </div>	
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    
+                    
+                    <!-- <button class="btn btn-primary mb-3" id="download">Download PDF</button> -->
+                    
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Customer</h3>
+
+                        
+
+
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool"
+                                    data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card-body table-responsive p-3">
+                            <table class="table" id="example">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Id</th>
+                                        <th>Customer Name</th>
+                                        <th>Executive Name</th>
+                                        <th>Total amount Spent</th>
+                                        <th>No. of times visited</th>
+                                        <th>Customer Details</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody id="tablerow">
+                                    
+                                </tbody> 
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    
+                    <div style="display: none" class="small_loader"
+                                id="small_loader1"></div>    
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+                <div class="col-md-6"></div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+    {% include 'footer.html' %}
+</div>
+<!-- DataTables -->
+<link
+	href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.css"
+	rel="stylesheet" />	
+<script
+src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script
+src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script
+src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#month").change(function(){
+            $("#Search").click(function(){
+                let month=$("#month").val();
+                let year=$("#year").val();
+                $("#month").val("Select");
+                $.ajax({
+                url:"/Frequent/Customer",
+                data:{"month":month,"year":year},
+                type:"POST",
+                success:function(data){
+                    console.log(data.payment);
+                    if(data.payment.length>0){
+                        //resetting table data
+                        if ($.fn.DataTable.isDataTable("#example")){
+                            $("#example").DataTable().destroy();
+                        }
+                        // console.log(data.payment);
+                        for(let i=0;i<data.payment.length;i++){
+                            let cus_id = data.payment[i]["CustomerId"];
+                            console.log(cus_id);
+                            $("#tablerow").append(`<tr><td>${data.payment[i]["CustomerId"]}</td><td>${data.payment[i]["CustomerName"]}</td><td>${data.payment[i]["Executive"]}</td><td>${data.payment[i]["Total"]}</td><td>${data.payment[i]["Visited"]}</td><td><div class="btn-group btn-group-sm"><a onclick='viewuser(${data.payment[i]["CustomerId"]})' id="view" class="btn btn-info"><i class="fas fa-file-invoice"></i></a></div></td></tr>`)
+                        }
+                        $("#example").dataTable({
+                            dom : 'Blfrtip',
+                            buttons:[
+                                {
+                                    extend : 'copy',
+                                    title : 'Frequent Customers',
+                                    filename : 'frequent_customer'
+                                },
+                                {
+                                    extend : 'excel',
+                                    title : 'Frequent Customers',
+                                    filename : 'frequent_customer'
+                                },
+                                {
+                                    extend : 'csvHtml5',
+                                    title : 'Frequent Customers',
+                                    filename : 'frequent_customer'
+                                },
+                                {
+                                    extend : 'pdfHtml5',
+                                    title : 'Frequent Customers',
+                                    filename : 'frequent_customer'
+                                }
+
+                            ]
+                        })
+                    }
+                    else{
+                        alert("No data Avaliable");
+                        return false;
+                    }
+                }
+            });
+            });
+        });
+        $("#example").dataTable();
+    });
+</script>
+<script>
+	function viewuser(i){
+		console.log("viewCustomer"+i) 
+		window.open("/customerManagement/viewCustomer/"+i,"_self");
+	}
+</script>
+{% endblock %}

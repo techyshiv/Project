@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    {% include 'nav.html' %}  
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+     <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Stock Master</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Stock Management/Stock Master</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <!-- Main content -->
+              <div class="invoice p-3 mb-3">
+                <!-- title row -->        
+                <!-- info row -->         
+                <!-- /.row -->  
+                <!-- Table row -->
+                <div class="row">
+                <div class="container">
+                  <!-- <form role="form" id="quickForm"> -->
+                            <div class="card-body">
+                    <div class="container">
+                <div class="form-group">
+                      <label>Select Product </label>
+                        <div class="input-group input-group-sm">
+         <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" id="product">
+                      <option selected="selected">Select</option> 
+                      {% if data1==1 %}
+                      {% for item in values %}
+                      <option>{{item.ProductName}}</option>
+                      {% endfor %}
+                      {% endif %}
+                    </select>
+                           </div></div>              
+                     
+                    </div>
+  
+                 
+            </div>
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <table class="table table-bordered table-hover" id="tab_logic">
+          <thead>
+            <tr>
+              <th class="text-center"> # </th>
+              <th class="text-center">Ingredients</th>
+             <th class="text-center"> Quantity </th>
+              <th class="text-center">Unit </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id='addr0'>
+              <td>1</td>
+            <td><input type="text" name='ingredients[]'  placeholder='Ingredients' class="form-control"/></td>
+                <td><input type="text" name='quantity[]'  placeholder='Quantity' class="form-control"/></td>
+             
+              <td><input type="text" name='unit[]' placeholder='Unit' class="form-control price"/></td>
+             
+            </tr>
+            <tr id='addr1'></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <button id="add_row" class="btn btn-default pull-left">Add Row</button>
+        <button id='delete_row' class="pull-right btn btn-default">Delete Row</button>
+      </div>
+    </div>
+  
+  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+   
+            
+                <!-- /.row -->
+  
+                <!-- this row will not appear when printing -->
+                <div class="row no-print">
+                  <div class="col-6">
+                    <button type="button" id="firstbtn" class="btn btn-primary float-right">Save
+                    </button>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" id="secondbtn" class="btn btn-primary float-right"><a href="{{url_for('ShowStock')}}" class="text-white">Show</a>
+                    </button>
+                  </div>
+                </div>
+                
+                
+              </div>
+              <!-- /.invoice -->
+            </div><!-- /.col -->
+          <!-- </form> -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+            <div class="card">
+                <div class="card-header border-transparent">
+                  <h3 class="card-title">Product</h3>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                      <tr>
+                          <th>SN</th>
+                          <th>Product</th>
+                          <th>Ingredients</th>
+                          <th>Quantity</th>
+                          <th>Unit</th>
+                    
+                      </tr>
+                      </thead>
+                      <tbody>
+                          {% for item in org_data %}
+                          <tr>
+                            <td>{{item.Id}}</td>
+                            <td>{{item.ProductName}}</td>
+                            <td>{{item.Ingredients}}</td>
+                            <td>{{item.Quantity}}</td>
+                            <td>{{item.Unit}}</td>
+                                                                      
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+          
+                <!-- /.card-footer -->
+              </div>
+      </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<script>
+    $(document).ready(function(){
+    var i=1;
+    $("#add_row").click(function(){b=i-1;
+      	$('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
+      	$('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      	i++; 
+  	});
+    $("#delete_row").click(function(){
+    	if(i>1){
+		$("#addr"+(i-1)).html('');
+		i--;
+		}
+		calc();
+	});
+	
+	$('#tab_logic tbody').on('keyup change',function(){
+		calc();
+	});
+	$('#tax').on('keyup change',function(){
+		calc_total();
+	});
+	
+
+});
+
+function calc()
+{
+	$('#tab_logic tbody tr').each(function(i, element) {
+		var html = $(this).html();
+		if(html!='')
+		{
+			var qty = $(this).find('.qty').val();
+			var price = $(this).find('.price').val();
+			$(this).find('.total').val(qty*price);
+			
+			calc_total();
+		}
+    });
+}
+
+function calc_total()
+{
+	total=0;
+	$('.total').each(function() {
+        total += parseInt($(this).val());
+    });
+	$('#sub_total').val(total.toFixed(2));
+	tax_sum=total/100*$('#tax').val();
+	$('#tax_amount').val(tax_sum.toFixed(2));
+	$('#total_amount').val((tax_sum+total).toFixed(2));
+}
+
+$(function() {
+    $('#firstbtn').click(function() {
+      let name=$('#product').val();
+      let final=[]
+      let final2=[]
+      let final3=[]
+      $("input[name='ingredients[]']").each(function() {
+      final.push($(this).val());
+      });
+      $("input[name='quantity[]']").each(function() {
+      final2.push($(this).val());
+      });
+      $("input[name='unit[]']").each(function() {
+      final3.push($(this).val());
+      });
+      if(name=="Select" || name==null){
+        alert("Please Select Product");
+        return false;
+      }
+      if(final==""){
+        alert("Please fill ingredients");
+        return false;
+      }
+      if(final2==""){
+        alert("Please fill quantity");
+        return false;
+      }
+      if(final3==""){
+        alert("Please fill unit");
+        return false;
+      }
+
+        $.ajax({
+            url: '/StockMaster',
+            data: {"name":name,"data":final,"data1":final2,"data3":final3},
+            type: 'POST',
+            success: function(data) {
+              console.log(data.Result);
+                if(data.Result=="Yes"){
+                  alert("Ingredients Already added to this product");
+                  $("input[name='unit[]']").val("");
+                  $("input[name='ingredients[]']").val("");
+                  $("input[name='quantity[]']").val("");
+                  $('#product').val("All");
+                  return false;
+                }
+                console.log("success");
+                $("input[name='unit[]']").val("");
+                $("input[name='ingredients[]']").val("");
+                $("input[name='quantity[]']").val("");
+                $('#product').val("All");
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});   
+</script>
+<script>
+  $(document).ready(function(){
+    let count=0;
+    $("#firstbtn").click(function(){
+      count+=1;
+    });
+    $("#secondbtn").click(function(){
+      if(count==0){
+        alert("Please first Save the Data by click on Save Button");
+        return false;
+      }
+    });
+  });
+</script>
+
+{% endblock %}

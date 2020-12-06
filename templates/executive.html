@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+  <!-- Navbar -->
+  {% include 'nav.html' %}
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  {% include 'sidebar.html' %}
+  <!-- Main Sidebar Container end -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Executive</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Executive</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"> Executive details <small></small></h3>
+              </div>
+              <div>
+                <div class="{{prop}}">
+                  <span id="mess">{{data1}}</span>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="quickForm" action="/exedata" method="POST" class="needs-validation">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="area">Area Name</label>
+                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger"
+                      style="width: 100%;" name="Executive" id="area">
+                      <option selected="selected">Select</option>
+                      {% for data in org_data %}
+                      <option>{{data}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="executive">Executive Name</label>
+                    <input type="text" name="exelabel" class="form-control" placeholder="Executive Name" id="executive"
+                      required autocomplete="off">
+                  </div>
+                  <div class="valid-feedback">
+                    <i class="far text-success fa-thumbs-up"></i> OK
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Email.
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exeid">Executive Id</label>
+                    <input type="text" name="idlabel" class="form-control" id="exeid" placeholder="Executive Id" required autocomplete="off">
+                  </div>
+                  <div class="valid-feedback">
+                    <i class="far text-success fa-thumbs-up"></i> OK
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Email.
+                  </div>
+
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="addlabel" class="form-control" id="address" placeholder="Address" required autocomplete="off">
+                  </div>
+                  <div class="valid-feedback">
+                    <i class="far text-success fa-thumbs-up"></i> OK
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Email.
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="number" name="moblabel" class="form-control" id="mobile" placeholder="mobile number"
+                      minlength="10" required autocomplete="off">
+                  </div>
+                  <div class="valid-feedback">
+                    <i class="far text-success fa-thumbs-up"></i> OK
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Email.
+                  </div>
+
+                  <div class="form-group">
+                    <label for="what">WhatsApp</label>
+                    <input type="number" name="whatlabel" class="form-control" id="what" placeholder="Whatsapp number" onchange="inputchange()" required autocomplete="off">
+                  </div>
+                  <div class="valid-feedback">
+                    <i class="far text-success fa-thumbs-up"></i> OK
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Mobile Number.
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="emaillabel" class="form-control" id="email" placeholder="Email"
+                      aria-describedby="emailHelp" required autocomplete="off">
+                  </div>
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+                  <div class="valid-feedback">
+                    <i class="far text-success fa-thumbs-up"></i> OK
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="fas text-danger fa-exclamation-triangle"></i> Some error in Email.
+                  </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" id="btnsubmit">Add</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<script>
+  function inputchange(event){
+    var phoneno = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+    let what=$("#what").val();
+    if(what.match(phoneno)){
+      return true;
+    }else{
+      alert("Whatsapp Number is Invalid");
+      return false;
+    }
+  }
+</script>
+<script>
+  $(document).ready(function () {
+    $("#btnsubmit").click(function () {
+      let area = $("#area").val();
+      let exename = $("#executive").val();
+      let exeid = $('#exeid').val();
+      let address = $("#address").val();
+      let mobile = $('#mobile').val();
+      let email = $("#email").val();
+      var phoneno = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+      if (area == "Select") {
+        alert("Please fill area details");
+        return false;
+      }
+      if (executive == "") {
+        alert("Please fill executive details");
+        return false;
+      }
+      if (exeid == "") {
+        alert("Please fill executiveid details");
+        return false;
+      }
+      if (address == "") {
+        alert("Please fill address details");
+        return false;
+      }
+      if(mobile == ""){
+        alert("Please fill Mobile Details");
+        return false;
+      }
+      if (mobile.match(phoneno)) {
+        return true;
+      }
+      else {
+        alert("Mobile Number is invalid");
+        return false;
+      }
+      if (email == "") {
+        alert("Please fill email details");
+        return false;
+      }
+    });
+  });
+</script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
+{% endblock %}

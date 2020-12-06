@@ -1,0 +1,254 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="/static/img/food1_version2.png" class="img-circle elevation-2" alt="User Image" width="50px">
+      <span class="brand-text font-weight-light">Brown bakers & Cafe
+      </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+<!--       Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/static/img/food1_version2.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block" id="emaildata">{{email}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{url_for('start')}}" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+              </a>
+          </li>
+      
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p class="pr-3">
+             Customer Management<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('area')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Area</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('executive')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Executive Name</p>
+                </a>
+                      <li class="nav-item">
+                <a href="{{url_for('viewdetails')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Executive Details</p>
+                </a>
+
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{url_for('Customer')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Customer</p>
+                </a>
+              </li>
+                 <li class="nav-item">
+                  <a href="{{url_for('Record')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Record</p>
+                </a>
+                </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-table"></i> -->
+              <i class="nav-icon far fa-money-bill-alt"></i>
+              <p>
+                Price Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('product')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Product Master</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cash-register"></i>
+              <p>
+                Payment Report
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('payment_report')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Day Book</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-invoice"></i>
+              <p>
+                Invoice
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('Invoice')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Invoice</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url_for('ViewInvoice')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Invoice</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-wave-square"></i>
+              <p>
+                Most Frequent
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('MostCustomer')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Frequent Customer</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url_for('MostProduct')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Frequent Product</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+      
+
+          {% if email=="admin@gmail.com" %}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cubes"></i>
+              <p>
+                Stock Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('stock')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Stock Master</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url_for('StockRecord')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Stock record</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Notice
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('AddTemplate')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Template</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url_for('allnotice')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Notice Template</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('Compose')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compose Notice</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('ViewCompose')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Notice</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-key"></i>
+              <p>
+                Assign Credientials
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('Crediential')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Executive</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

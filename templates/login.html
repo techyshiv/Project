@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wrapper">
+
+    <!-- /.navbar -->
+  
+    <!-- Main Sidebar Container -->
+  
+  <h1 class="text-center" style="padding-top: 10px">Brown bakers Cafe</h1>
+      <br><br><br>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content">
+      <!-- Content Header (Page header) -->
+  
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- jquery validation -->
+              <div class="card card-primary">
+                <div class="card-header bg-primary">
+                  <h3 class="card-title text-white">Login</h3>
+                </div>
+                <div>
+                  <div class="{{prop}}">
+                      <span id="mess">{{data}}</span>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" method="POST" action="/login">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+              </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+  
+            </div>
+            <!--/.col (right) -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <!-- Control Sidebar -->
+  
+    <!-- /.control-sidebar -->
+  
+    <!-- Main Footer -->
+    {% include 'footer.html' %}
+  </div>
+  <!-- ./wrapper -->
+{% endblock %}

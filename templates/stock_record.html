@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="wrapper">
+    {% include 'nav.html' %}  
+    <!-- Main Sidebar Container -->
+    {% include 'sidebar.html' %}
+    <!-- Main Sidebar Container end -->
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Stock</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Stock Report</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- jquery validation -->
+     
+            
+       
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">DataTable with default features</h3>
+                </div>
+                                         
+                                 <div class="container">
+                          <div class="row">
+                          
+                <div class="col-md-4">
+                  <div class="form-group">
+
+                    <input type="radio" checked="checked" name="radiobutton"
+                      id="radiobutton1"> <label>Select Duration</label> <select
+                      class="form-control select2 select2-danger"
+                      data-dropdown-css-class="select2-danger"
+                      style="width: 100%;" name="duration" id="duration" >
+                      <option value="Today" selected="selected">Today</option>
+                      
+                      <option>All</option>
+
+                    </select>
+
+                  </div>
+                                          </div>           
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+
+                                              <input type="radio" name="radiobutton" id="radiobutton2">
+                      
+                                              <label>From Date:</label> <input type="date" disabled
+                                                class="form-control" style="width: 100%;" name="from"
+                                                id="from">
+                                            </div>
+                                          </div>           
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+
+                                              <label>To Date:</label> <input type="date" disabled
+                                                class="form-control" style="width: 100%;" name="to" id="to">
+                                            </div>
+                                          </div>       
+                           
+                       
+                                            
+                              
+                                    
+                                        
+                   </div>
+   </div>  
+                            
+                             <div class="container">
+                                      <div class="row">
+                               <div class="col-md-4">
+                        <div class="form-group">
+                    <label>Area</label>
+                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" id="areaid">
+                      <option selected="selected">Select</option>
+                      <option>All</option> 
+                      {% if data1==1 %}
+                      {% for data in org_data %}
+                      <option>{{data.Name}}</option>
+                      {% endfor %}
+                      {% endif %}
+                    </select>
+                  </div>
+                </div>             
+                <div class="col-md-4">
+                        <div class="form-group">
+                    <label>Executive</label>
+                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" id="executive">
+                      <option selected="selected">Select</option> 
+                      
+                    </select>
+                           
+                  </div>
+                                          </div>  
+                                                 <div class="col-md-4">
+                        <div class="form-group">
+                <button class="btn btn-primary form-control" type="submit" style="margin-top: 30px" id="firstbtn">Search</button>
+                  
+                           
+                  </div>
+                                          </div> 
+        
+                                          </div>    
+                       
+                                          
+                                            
+                              
+                                    
+                                        
+                   </div>
+   </div>
+                </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div  id="tab">
+                      <div id="createfield">
+                      </div>
+                      <br/>
+                      <div class="mb-2">
+                        <button class="btn btn-primary" id="download">Download Pdf</button>
+                      </div> 
+                  <table id="example"
+                  class="table table-responsive table-bordered table-striped display">
+                     
+                    <thead id="tablehead">
+                    <tr>
+                      <th>SNo.</th>
+                      <th>Product</th>
+                      <th>Quantity</th>  
+                        <th>Ingredents</th>
+                      <th>Total Ingredient Qunantity</th>  
+                        <th>Per Uint qantity </th>                     
+                    </tr>
+                    </thead>
+                    <tbody id="tablerow">
+
+                    </tbody>
+         
+                  </table>
+                    </div>
+           
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+  
+            </div>
+            <!--/.col (right) -->
+          </div>
+          <!-- /.row -->
+        <!-- /.container-fluid -->
+  
+      </section>
+      <!-- /.content -->
+    </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<script>
+  // $(document).ready(function(){
+  //   $("#tablehead").hide();
+  // });
+</script>
+<script>
+  $(document).ready(function(){
+    $('#areaid').change(function(){
+            $.ajax({
+                url: '/Invoice/executive?area='+ document.getElementById('areaid').value,
+                success: function(data) {
+                    let s="";
+                    if($("#areaid").val()=="All"){
+                      s=`<option>All</option>`;
+                    }
+                    else{
+                      s=`<option>Select</option>`;
+                    for(let i=0;i<data.Result.length;i++){
+                        s+=`<option>${data.Result[i].HawkerName}</option>`
+                    }
+                    }
+                    $('#executive').html(s);
+                }
+        });
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('#radiobutton2').on('change',function()
+				{	
+					if($("#duration").val()!="Today"){
+            $("#from").prop('disabled', false);	
+            document.getElementById('from').valueAsDate = new Date();
+            
+            $("#to").prop('disabled', false);	
+            document.getElementById('to').valueAsDate = new Date();
+            $("#duration").prop('disabled',true);
+          }
+				});
+		
+		$('#radiobutton1').on('change',function()
+				{								
+					$("#duration").prop('disabled', false);	
+					$("#duration").val('all');
+					$("#from").prop('disabled', true);	
+					$("#from").val('');
+					$("#to").prop('disabled', true);	
+					$("#to").val('');
+	
+				});
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+      $("#firstbtn").click(function(){
+          var from = $("#from").val();
+          var to = $("#to").val();
+          var duration = $("#duration").val();
+          var areaid = $("#areaid").val();
+          var executiveid = $("#executive").val();
+          let date=new Date();
+          let day=date.toLocaleDateString().slice(3,5)
+          let month=date.toLocaleDateString().slice(0,2)
+          let year=date.toLocaleDateString().slice(6,10)
+          let full=year+"-"+day+"-"+month;
+          var details=from+","+to+","+duration+","+executiveid+","+full;
+          console.log(from);
+          console.log(to);
+          $.ajax({
+              url:"/StockDetails/?pro="+details,
+              success:function(data){
+                  console.log(data);
+                  if(data.Result!="No Data Found"){
+                    $("#createfield").append(`<input type="text" name="" id="myinput" class="float-right" placeholder="Search" onkeyup="serachfun()">`)
+                    var x = document.getElementById("example").rows.length;
+                    for(let i=0;i<data.Result.length;i++){
+                      $("#tablerow").append(`<tr><td>${i+x}</td><td>${data.Result[i]["Product"]}</td><td>${data.Result[i]["Quantity"]}</td><td>${data.Result[i]["Ingredients"]}</td><td>${data.Result[i]["IngreQuan"]}</td><td>${data.Result[i]["Unit"]}</td>`)
+                    }
+                  //   $(document).ready(function() {
+                  //   $('#example').DataTable( {
+                  //       dom: 'Bfrtip',
+                  //       buttons: [
+                  //           'copyHtml5',
+                  //           'excelHtml5',
+                  //           'csvHtml5',
+                  //           'pdfHtml5'
+                  //       ]
+                  //   } );
+                  //   $("#example_paginate").css("display", "none");
+                  // } );
+                  }
+                  else{
+                    alert("Data Not Found");
+                  }
+              }
+          });
+      });
+  });
+</script>
+<script>
+  const serachfun=()=>{
+    let filter=document.getElementById("myinput").value.toUpperCase();
+    // console.log(filter);
+    let mytable=document.getElementById("example");
+    let tr=mytable.getElementsByTagName("tr");
+    for(var i=0;i<tr.length;i++){
+      let td=tr[i].getElementsByTagName('td')[1];
+      if(td){
+        let txtvalue=td.textContent || td.innerHTML;
+        if(txtvalue.toUpperCase().indexOf(filter)>-1){
+          tr[i].style.display="";
+        }else{
+          tr[i].style.display="none";
+        }
+      }
+    }
+  };
+</script>
+<script>
+	window.onload = function () {
+		document.getElementById("download").addEventListener("click", () => {
+			const invoice = document.getElementById("example");
+			console.log(invoice);
+			var opt = {
+				margin: 1,
+				filename: 'stock_record.pdf',
+				image: { type: 'jpeg', quality: 0.98 },
+				html2canvas: { scale: 7 },
+				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			};
+			html2pdf().from(invoice).set(opt).save();
+		});
+	}
+</script>
+
+{% endblock %}
