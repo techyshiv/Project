@@ -7,9 +7,9 @@ includes = [ 'jinja2' , 'jinja2.ext']
 excludes = ['Tkinter']
 
 setup(
- name='Brown Bakers & Cafe',
+ name='Food O Mystery & Cafe',
  version = '1.1',
  description = 'Made By Shivang Saxena',
  options = {'build_exe':{'excludes':excludes,'include_files':includefiles,'includes':includes}},
- executables = [Executable('app.py',icon='brown.ico')]
+ executables = [Executable('app.py',icon='food.ico')]
 )

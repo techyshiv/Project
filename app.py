@@ -372,7 +372,7 @@ def View():
                             "Email":new_data[i]["Email"]
                         }
                         )
-                    print(org_data)
+                    # print(org_data)
             return render_template("executive_show_delte.html",org_data=org_data,email=data,data1=data1,prop=prop,data2=data2)
     return render_template("executive_show_delte.html")
 
@@ -540,7 +540,7 @@ def AddProduct():
                     json_object[0]["User1"]['ProductDetails']=new_data
                     json.dump(json_object,f,indent=4)
             new_data=sorted(new_data,key=lambda i:(i['Product_Price'], i['ProductName']))
-            print(new_data)
+            # print(new_data)
             return render_template("product.html",email=data,data1=data1,org_data=new_data,prop=prop)
     return render_template("product.html")
 
@@ -743,7 +743,7 @@ def RecordView():
     if request.method=="POST":
         month=request.form.get("month")
         cus_id=request.form.get("cusname")
-        print(cus_id)
+        # print(cus_id)
         new_data=[]
         with open("area.json","r+") as f:
             json_object=json.loads(f.read())
@@ -754,7 +754,7 @@ def RecordView():
                         new_data.append(payment_details[val])
             else:
                 new_data.append("No Data Found")
-        print(new_data)
+        # print(new_data)
         return jsonify({"Result":new_data})
 
 @app.route("/Invoice")
@@ -1032,7 +1032,7 @@ def Success():
                     f.seek(0)
                     f.truncate()
                     json_object[0]["User1"]["Payment_Details"][val]["PaymentStatus"]="Success"
-                    print(json_object)
+                    # print(json_object)
                     json.dump(json_object,f,indent=4)
     return render_template("invoice_print.html")
 
@@ -1132,14 +1132,14 @@ def payment_report():
 def show_payment_report():
     data1=request.args.get("pro")
     out=list(data1.split(","))
-    print(f"Out is:{out}")
+    # print(f"Out is:{out}")
     cus_name=out[2]
     duration=out[3]
     strat=out[0]
     end=out[1]
     m,d,y=out[4].split("/")
     full=y + "-" + m + "-" + d
-    print(f"Full is:{full}")
+    # print(f"Full is:{full}")
     exename=out[5]
     type=out[6]
     with open("area.json","r+") as f:
@@ -1174,7 +1174,7 @@ def show_payment_report():
                 for val in range(len(new_data)):
                     if cus_name =="All" and type=="All":
                         getdate=new_data[val]["FullDate"]
-                        print(getdate)
+                        # print(getdate)
                         y2,m2,d2=getdate.split("-")
                         y2,m2,d2=int(y2),int(m2),int(d2)
                         y,m,d=strat.split("-")
@@ -1184,9 +1184,9 @@ def show_payment_report():
                         d3=(y2,d2,m2)
                         d2=(y1,d1,m1)
                         d1=(y,d,m)
-                        print(d1)
-                        print(d2)
-                        print(d3)
+                        # print(d1)
+                        # print(d2)
+                        # print(d3)
                         if(d1>=d3 and d2>=d3):
                             invoice_details.append(new_data[val])
                         else:
@@ -1202,9 +1202,9 @@ def show_payment_report():
                         d3=(y2,d2,m2)
                         d2=(y1,d1,m1)
                         d1=(y,d,m)
-                        print(d1)
-                        print(d2)
-                        print(d3)
+                        # print(d1)
+                        # print(d2)
+                        # print(d3)
                         if(d1>=d3 and d2>=d3):
                             # print("yes")
                             invoice_details.append(new_data[val])
@@ -1290,7 +1290,7 @@ def ShowCustomer():
                         })
                         # name.pop()
         payment_details=sorted(payment_details,key=lambda i: i['Visited'],reverse=True)
-        print(payment_details)
+        # print(payment_details)
         return jsonify({"payment":payment_details})
             
 @app.route("/MostProduct")
@@ -1375,7 +1375,7 @@ def StockDetails():
     exe_name=out[3]
     full=out[4]
     # print(strat)
-    print(full)
+    # print(full)
     with open("area.json","r+") as f:
         json_object=json.loads(f.read())
         payment=None
@@ -1387,7 +1387,7 @@ def StockDetails():
         product_details=[]
         new_data=[]
         if day=="Today":
-            print("Today")
+            print("")
             if payment!=None:
                 print("Yes")
                 for val in range(len(payment)):
@@ -1409,9 +1409,9 @@ def StockDetails():
                         d3=(y2,d2,m2)
                         d2=(y1,d1,m1)
                         d1=(y,d,m)
-                        print(d1)
-                        print(d2)
-                        print(d3)
+                        # print(d1)
+                        # print(d2)
+                        # print(d3)
                         if(d1>=d3 and d2>=d3):
                             # print("yes")
                             new_data.append(payment[val])
@@ -1460,7 +1460,7 @@ def StockDetails():
                         })
         else:
             product_details="No Data Found"
-        print(product_details)
+        # print(product_details)
 
     return jsonify({"Result":product_details})
 
@@ -2282,6 +2282,6 @@ def viewcustomer(id):
                 Name = customer_details[val]["CustomerName"]
     return render_template("view_Customer.html",name=Name,email=data)
 
-if __name__=="__main__":
-    app.run(debug=True)   
-# ui.run() 
+# if __name__=="__main__":
+#     app.run(debug=True)   
+ui.run() 
