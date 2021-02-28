@@ -2437,4 +2437,3 @@ def viewcustomer(id):
 
 if __name__=="__main__":
     app.run(debug=True)   
-# ui.run()
