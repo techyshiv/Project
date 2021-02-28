@@ -1,6 +1,5 @@
 from flask import Flask,render_template,url_for,flash,redirect,jsonify,request,session
 from flask import Markup
-from flaskwebgui import FlaskUI
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy.sql.default_comparator
 import os
@@ -13,15 +12,10 @@ from collections import defaultdict
 import smtplib as sm
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import logging
 result_stock = defaultdict(int)
 db_path=os.path.join(os.path.dirname(__file__))
 db_uri='sqlite:///'+os.path.join(db_path,'dbfile.sqlite')
 app=Flask(__name__)
-app.logger.disabled = True
-log = logging.getLogger('werkzeug')
-log.disabled = True
-ui=FlaskUI(app)
 app.config['SECRET_KEY'] = 'thisismysecretkeydonotstealit'
 app.config['SQLALCHEMY_DATABASE_URI']=db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
