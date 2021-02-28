@@ -111,7 +111,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tbody">
-                                        
+
                                     </tbody>
 
                                 </table>
@@ -166,7 +166,7 @@
                                                 <div class="col-md-4">
                                                     <p id="what"><b>Whatsapp No.</b>:</p>
                                                     <p id="cusid"><b>Whatsapp No.</b>:</p>
-                                                    <p id="em"><b>Email</b>:  </p>
+                                                    <p id="em"><b>Email</b>: </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@
                                             data-dropdown-css-class="select2-danger" style="width: 100%;" id="month">
                                             <option selected="selected">--Select Month--</option>
 
-                                            <option>Janaury</option>
+                                            <option>January</option>
                                             <option>February</option>
                                             <option>March</option>
                                             <option>April</option>
@@ -239,19 +239,21 @@
                                             <th>Price</th>
                                             <th>Amount</th>
                                             <th> Mode Of Payment</th>
+                                            <th>Date</th>
                                             <th>Payment Status</th>
-                                            
+
 
 
                                         </tr>
                                     </thead>
                                     <tbody id="viewrow">
-                                        
+
                                     </tbody>
 
                                 </table>
                                 <div class="mt-3">
-                                    <button onclick="myfun('modal-body')" value="" class="btn btn-primary">Download Pdf</button>
+                                    <button onclick="myfun('modal-body')" value="" class="btn btn-primary">Download
+                                        Pdf</button>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -279,33 +281,33 @@
 {% include 'footer.html' %}
 </div>
 <script>
-    $(document).ready(function(){
-        $('#area').change(function(){
+    $(document).ready(function () {
+        $('#area').change(function () {
             $.ajax({
-                url: '/Invoice/executive?area='+ document.getElementById('area').value ,
-                success: function(data) {
+                url: '/Invoice/executive?area=' + document.getElementById('area').value,
+                success: function (data) {
                     console.log(data.Result[0]);
-                    if($("#area").val()=="All"){
+                    if ($("#area").val() == "All") {
                         let s = `<option>All</option>`
                         $('#exename').html(s);
                     }
-                    else{
-                        let s=`<option>Select</option>`;
-                        for(let i=0;i<data.Result.length;i++){
-                            s+=`<option>${data.Result[i].HawkerName}</option>`
+                    else {
+                        let s = `<option>Select</option>`;
+                        for (let i = 0; i < data.Result.length; i++) {
+                            s += `<option>${data.Result[i].HawkerName}</option>`
                         }
                         $('#exename').html(s);
                     }
                 }
+            });
         });
-    });
     });
 </script>
 <script>
     $(function () {
-        let count=0;
+        let count = 0;
         $('#firstbtn').click(function () {
-            count+=1;
+            count += 1;
             console.log(count);
             let name = $('#area').val();
             let exename = $('#exename').val();
@@ -318,19 +320,26 @@
                 type: 'POST',
                 success: function (response) {
                     console.log(response.Result);
-                    if(response.Result.length>0){
-                      for(let i=0;i<response.Result.length;i++){
+                    if (response.Result.length > 0) {
+                        if (response.Message === "Payment") {
+                            for (let i = 0; i < response.Result.length; i++) {
+                                $('#tbody').append(`<tr id="${i + 1}"><td>${i + 1}</td><td>${response.Result[i]["Name"]}</td><td>${response.Result[i]["CustomerId"]}</td><td>${response.Result[i]["Executive"]}</td><td>${response.Result[i]["FatherName"]}</td><td>${response.Result[i]["Address"]}</td><td>${response.Result[i]["Mobile"]}</td><td>${response.Result[i]["WhatsAppNumber"]}</td><td>${response.Result[i]["Email"]}</td><td><button id="${i + 1}" class="btn btn-info btnsubmit"><a href="#" class = "text-white" data-toggle="modal"
+                                                    data-target="#myModal">View</a></button></td></tr>`);
+                            }
+                        }else{
+                            for(let i=0;i<response.Result.length;i++){
                         $('#tbody').append(`<tr id="${i+1}"><td>${i+1}</td><td>${response.Result[i]["CustomerName"]}</td><td>${response.Result[i]["CustomerId"]}</td><td>${response.Result[i]["ExecutiveName"]}</td><td>${response.Result[i]["FatherName"]}</td><td>${response.Result[i]["Address"]}</td><td>${response.Result[i]["MobileNumber"]}</td><td>${response.Result[i]["WhatsAppNumber"]}</td><td>${response.Result[i]["Email"]}</td><td><button id="${i+1}" class="btn btn-info btnsubmit"><a href="#" class = "text-white" data-toggle="modal"
                                                     data-target="#myModal">View</a></button></td></tr>`);
                       }
-                    
-                    }else{
-                        alert("Data Not Found");
                         }
-                    $(".btnsubmit").click(function(){
+
+                    } else {
+                        alert("Data Not Found");
+                    }
+                    $(".btnsubmit").click(function () {
                         $("#viewrow").empty();
                     });
-                    
+
                 },
                 error: function (error) {
                     console.log(error);
@@ -341,18 +350,18 @@
 
 </script>
 <script>
-    $('.table tbody').on('click','.btnsubmit',function(){
-        var currow=$(this).closest('tr');
-        var col1=currow.find('td:eq(0)').text();
-        var col2=currow.find('td:eq(1)').text();
-        var col3=currow.find('td:eq(2)').text();
-        var col4=currow.find('td:eq(3)').text();
-        var col5=currow.find('td:eq(4)').text();
-        var col6=currow.find('td:eq(5)').text();
-        var col7=currow.find('td:eq(6)').text();
-        var col8=currow.find('td:eq(7)').text();
-        var col9=currow.find('td:eq(8)').text();
-        var result=col1+'\n'+col2+'\n'+col3+'\n'+col4+'\n'+col5+'\n'+col6+'\n'+col7+'\n'+col8+'\n'+col9;
+    $('.table tbody').on('click', '.btnsubmit', function () {
+        var currow = $(this).closest('tr');
+        var col1 = currow.find('td:eq(0)').text();
+        var col2 = currow.find('td:eq(1)').text();
+        var col3 = currow.find('td:eq(2)').text();
+        var col4 = currow.find('td:eq(3)').text();
+        var col5 = currow.find('td:eq(4)').text();
+        var col6 = currow.find('td:eq(5)').text();
+        var col7 = currow.find('td:eq(6)').text();
+        var col8 = currow.find('td:eq(7)').text();
+        var col9 = currow.find('td:eq(8)').text();
+        var result = col1 + '\n' + col2 + '\n' + col3 + '\n' + col4 + '\n' + col5 + '\n' + col6 + '\n' + col7 + '\n' + col8 + '\n' + col9;
         $('#cusname').html(`Name : ${col2}`);
         $('#fname').html(`Father Name : ${col5}`);
         $('#add').html(`Address: ${col6}`);
@@ -365,39 +374,42 @@
     });
 </script>
 <script>
-    $(document).ready(function(){
-        $("#viewbtn").click(function(){
-            let month=$("#month").val();
-            let cusid=$("#hiddenname").val();
+    $(document).ready(function () {
+        $("#viewbtn").click(function () {
+            let month = $("#month").val();
+            let cusid = $("#hiddenname").val();
             // console.log(cname);
             $.ajax({
-                url:"/RecordView",
-                data:{"month":month,"cusname":cusid},
-                type:"POST",
-                success:function(data){
+                url: "/RecordView",
+                data: { "month": month, "cusname": cusid },
+                type: "POST",
+                success: function (data) {
                     console.log(data.Result);
-                    if(data.Result[0]!="No Data Found"){
-                    for(let i=0;i<data.Result.length;i++){
-                        for(let j=0;j<data.Result[i]["Product"].length;j++){
-                            $("#viewrow").append(
-                                `
+                    let count = 0;
+                    if (data.Result[0] != "No Data Found") {
+                        for (let i = 0; i < data.Result.length; i++) {
+                            for (let j = 0; j < data.Result[i]["Product"].length; j++) {
+                                count += 1;
+                                $("#viewrow").append(
+                                    `
                                 <tr>
-                                    <td>${j+1}</td>
+                                    <td>${count}</td>
                                     <td>${data.Result[i]["Product"][j]}</td>
                                     <td>${data.Result[i]["Quantity"][j]}</td>
                                     <td>${data.Result[i]["Price"][j]}</td>
                                     <td>${data.Result[i]["Ammount"][j]}</td>
                                     <td>${data.Result[i]["PaymentMode"]}</td>
+                                    <td>${data.Result[i]["FullDate"]}</td>
                                     <td>${data.Result[i]["PaymentStatus"]}</td>
                                 `
-                            )
+                                )
+                            }
                         }
-                    }
-                    }else{
+                    } else {
                         alert("Data Not Found");
                     }
                 },
-                error:function(error){
+                error: function (error) {
                     console.log(error);
                 }
             });
@@ -405,17 +417,17 @@
     });
 </script>
 <script>
-    function myfun(paravalue){
-        var backup=document.body.innerHTML;
-        var divcontent=document.getElementById("modal-body").innerHTML;
+    function myfun(paravalue) {
+        var backup = document.body.innerHTML;
+        var divcontent = document.getElementById("modal-body").innerHTML;
         var opt = {
-				margin: 1,
-				filename: 'record.pdf',
-				image: { type: 'jpeg', quality: 0.98 },
-				html2canvas: { scale: 7 },
-				jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-			};
-		html2pdf().from(divcontent).set(opt).save();
+            margin: 1,
+            filename: 'record.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 7 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().from(divcontent).set(opt).save();
     }
 </script>
 

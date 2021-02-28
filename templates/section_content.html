@@ -94,4 +94,20 @@
       <!-- /.row -->
     </div><!--/. container-fluid -->
   </section>
+  <script>
+    $(document).ready(function(){
+      $(".info-box-text").click(()=>{
+        $.ajax({
+          url:"/get/customer_data",
+          success:function(data){
+            if(data.Data[0]["PaymentStatus"] == "Success"){
+              alert(`Last Payment Details\nUser Name = ${data.Data[0]["Name"]}\nPay = ${data.Data[0]["GrandTotal"]}\nPayment Status = ${data.Data[0]["PaymentStatus"]}\nGST = ${data.Data[0]["GST"]}`);
+            }else{
+              alert("The Last Order Was Cancil");
+            }
+          }
+        });
+      })
+    });
+  </script>
   <!-- /.content -->

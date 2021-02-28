@@ -7,7 +7,7 @@ includes = [ 'jinja2' , 'jinja2.ext']
 excludes = ['Tkinter']
 
 setup(
- name='Food O Mystery & Cafe',
+ name='Food O Mystery',
  version = '1.1',
  description = 'Made By Shivang Saxena',
  options = {'build_exe':{'excludes':excludes,'include_files':includefiles,'includes':includes}},

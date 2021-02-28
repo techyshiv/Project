@@ -6,7 +6,7 @@
     <style>
         @media print {
             @page {
-                margin: 0 auto;
+                margin: 20mm 10mm 20mm 10mm;
                 sheet-size: 300px 250mm;
             }
             html {
@@ -18,7 +18,7 @@
                 padding: 0
             }
             #printContainer {
-                width: 250px;
+                width: 300px;
                 margin: auto;
                 text-align: justify;
             }
@@ -188,32 +188,38 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+.para{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
     </style>
 </head>
 
 <body onload="window.print();">
-    <h1 id="logo" class=""><img src='/static/img/food.png' alt='Logo' style="width:60px;"></h1>
+    <!-- <h1 id="logo" class=""><img src='/static/img/food.png' alt='Logo' style="width:60px;"></h1> -->
     <div id='printContainer'>
         <div class="ticket">
             <img class="centered" src="/static/img/food.png" alt="Logo" style="width: 200px;margin-left: 42px;">
-            <p class="centered">Food "O" Mystery & Cafe.
-                <br>Ramuteer,
+            <p class="centered">GST INVOICE <br>Food 'O' Mystery.
+                <br>Ramkuteer,
                 near civil hospital ,
                 Nowgong (M.P.)
                 <br>Phone: +91 9893363677<br>
                 Email: foodomystery@gmail.com
+                <br>GSTIN:23AAHFF3223B1Z7
             </p>
             <div class="column">
                 <div class="col">
                     <ul>
-                        <li><b>Customer Id :{{cus}}</b></li>
+                        <li><b>Invoice Id :{{cus}}</b></li>
                         <li><b>Mobile:{{mobile}}</b></li>
                         <li><b>User:{{name}}</b></li>
                     </ul>
                 </div>
                 <div class="col1">
                     <ul>
-                        <li><b>Bill No.:00025</b></li>
+                        <li><b id="bill_no">Bill No.:00025</b></li>
                         <li><b id="date"></b></li>
                         <li><b id="time"></b></li>
                     </ul>
@@ -225,8 +231,8 @@
                         <th>S.No</th>
                         <th>Pr</th>
                         <th>Qty</th>
-                        <th>Price</th>
-                        <th>Total</th>
+                        <th>Rate</th>
+                        <th>Amt</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -243,18 +249,21 @@
                     <tr>
                         <td>Item: {{item}}</td>
                         <td>Item Qty: {{quan}}</td>
-                        <td>Total: {{sub}}</td>
+                        <td><strong><br>Grand Total:-</strong><b>{{total}}</b></td>
                         <td></td>
                         <td></td>
                        
                     </tr>
                 </tbody>
             </table>
+            <div class="col">
+                <p class="para"><strong><b>&lt;------GST DETAILS---------&gt;</b></strong></p>
+            </div>
             <div class="column1">
                 <div class="col">
                     <ul>
-                        <li><b>Tax</b></li>
-                        <li><b id="tax">{{tax}}%</b></li>
+                        <li><b>Taxable Amt.</b></li>
+                        <li><b id="tax">{{taxm}}</b></li>
                         
                     </ul>
                 </div>
@@ -272,13 +281,16 @@
                 </div>
                 <div class="col">
                     <ul>
-                        <li><b>PAY</b></li>
+                        <li><b>Grand Total</b></li>
                         <li><b>{{total}}</b></li>
                     </ul>
                 </div>
             </div>
-
+            {% if msgs == "Success" or prev == 0 %}
             <p class="centered" style="border-top: 1px solid black;padding:0px;margin: 0;border-bottom: 1px solid black;">Rs: {{msg}} Only!!.</p>
+            {% else %}
+            <p class="centered" style="border-top: 1px solid black;padding:0px;margin: 0;border-bottom: 1px solid black;">Prev Amm = {{prev}}<br/>Due Payment is Rs: {{msg}} Only!!.</p>
+            {% endif %}
             <!-- <p class="centered" style="border-top: 1px solid black;border-bottom: 1px solid black;"><b>YOU SAVED 10.00
                 </b></p> -->
             <p class="centered" style="padding:0px;margin: 0;">Thanks for your purchase!
@@ -288,7 +300,12 @@
     </div>
     <script>
         let date=new Date();
-        document.getElementById("date").innerHTML=`Date:${date.toLocaleDateString()}`;
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let full = day + "/" + month + "/" + year
+        console.log(full);
+        document.getElementById("date").innerHTML=`Date:${full}`;
         document.getElementById("time").innerHTML=`Time:${date.toTimeString().slice(0,9)}`;
     </script>
 </body>

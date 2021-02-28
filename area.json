@@ -2,7 +2,2774 @@
     {
         "User1": {
             "Id": 1,
-            "Email": "admin@gmail.com"
+            "Email": "admin@gmail.com",
+            "ProductDetails": [
+                {
+                    "Id": 1,
+                    "ProductName": "Plain Cheese Pizza:P01",
+                    "ProductCode": "P01",
+                    "Product_Price": "85.99"
+                },
+                {
+                    "Id": 2,
+                    "ProductName": "Veggie pizza:P02",
+                    "ProductCode": "P02",
+                    "Product_Price": "105.09"
+                },
+                {
+                    "Id": 3,
+                    "ProductName": "Fries Pizza:P03",
+                    "ProductCode": "P03",
+                    "Product_Price": "114.64"
+                },
+                {
+                    "Id": 4,
+                    "ProductName": "Mushroom Capsicum Pizza:P04",
+                    "ProductCode": "P04",
+                    "Product_Price": "119.42"
+                },
+                {
+                    "Id": 5,
+                    "ProductName": "Paneer Corn Pizza:P05",
+                    "ProductCode": "P05",
+                    "Product_Price": "128.97"
+                },
+                {
+                    "Id": 6,
+                    "ProductName": "Veg Overloaded Pizza:P06",
+                    "ProductCode": "P06",
+                    "Product_Price": "148.08"
+                },
+                {
+                    "Id": 7,
+                    "ProductName": "Paneer Mushroom Makhnee:P07",
+                    "ProductCode": "P07",
+                    "Product_Price": "157.63"
+                },
+                {
+                    "Id": 8,
+                    "ProductName": "F'O'M Cheese Burst Pizza:P08",
+                    "ProductCode": "P08",
+                    "Product_Price": "191.072"
+                },
+                {
+                    "Id": 12,
+                    "ProductName": "Gill Veggie Sandwich:S01",
+                    "ProductCode": "S01",
+                    "Product_Price": "66.87"
+                },
+                {
+                    "Id": 13,
+                    "ProductName": "Veggie cheese Sandwich:S02",
+                    "ProductCode": "S02",
+                    "Product_Price": "76.42"
+                },
+                {
+                    "Id": 14,
+                    "ProductName": "Paneer Corn Cheese Sandwich:S03",
+                    "ProductCode": "S03",
+                    "Product_Price": "85.99"
+                },
+                {
+                    "Id": 15,
+                    "ProductName": "Mushroom Corn Sandwich:S04",
+                    "ProductCode": "S04",
+                    "Product_Price": "85.99"
+                },
+                {
+                    "Id": 16,
+                    "ProductName": "F'O'M Overloaded Sandwich:S05",
+                    "ProductCode": "S05",
+                    "Product_Price": "114.64"
+                },
+                {
+                    "Id": 17,
+                    "ProductName": "Veg Wrap:W01",
+                    "ProductCode": "W01",
+                    "Product_Price": "57.33"
+                },
+                {
+                    "Id": 18,
+                    "ProductName": "Corn Cheese Wrap:W02",
+                    "ProductCode": "W02",
+                    "Product_Price": "66.87"
+                },
+                {
+                    "Id": 19,
+                    "ProductName": "Paneer Cheese Wrap:W03",
+                    "ProductCode": "W03",
+                    "Product_Price": "76.4"
+                },
+                {
+                    "Id": 20,
+                    "ProductName": "French Fries:FF01",
+                    "ProductCode": "FF01",
+                    "Product_Price": "38.21"
+                },
+                {
+                    "Id": 21,
+                    "ProductName": "Cheesee Fries:FF02",
+                    "ProductCode": "FF02",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 22,
+                    "ProductName": "Garlic Bread:GB01",
+                    "ProductCode": "GB01",
+                    "Product_Price": "38.21"
+                },
+                {
+                    "Id": 23,
+                    "ProductName": "American Corn:AC01",
+                    "ProductCode": "AC01",
+                    "Product_Price": "38.21"
+                },
+                {
+                    "Id": 24,
+                    "ProductName": "Veg Hot Dog:HD01",
+                    "ProductCode": "HD01",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 26,
+                    "ProductName": "Veg Nuggets:VN01",
+                    "ProductCode": "VN01",
+                    "Product_Price": "52.54"
+                },
+                {
+                    "Id": 27,
+                    "ProductName": "Cheese Pasta:CP01",
+                    "ProductCode": "CP01",
+                    "Product_Price": "76.42"
+                },
+                {
+                    "Id": 28,
+                    "ProductName": "Cheese Nachos:CN01",
+                    "ProductCode": "CN01",
+                    "Product_Price": "114.64"
+                },
+                {
+                    "Id": 29,
+                    "ProductName": "Hot Coffee:HC01",
+                    "ProductCode": "HC01",
+                    "Product_Price": "23.88"
+                },
+                {
+                    "Id": 30,
+                    "ProductName": "Cold Coffee:CC01",
+                    "ProductCode": "CC01",
+                    "Product_Price": "57.33"
+                },
+                {
+                    "Id": 31,
+                    "ProductName": "Cold Coffee With Ice Cream:CC02",
+                    "ProductCode": "CC02",
+                    "Product_Price": "71.65"
+                },
+                {
+                    "Id": 32,
+                    "ProductName": "Plain Shake:SH01",
+                    "ProductCode": "SH01",
+                    "Product_Price": "57.33"
+                },
+                {
+                    "Id": 33,
+                    "ProductName": "Shake With Ice Cream :SH02",
+                    "ProductCode": "SH02",
+                    "Product_Price": "71.65"
+                },
+                {
+                    "Id": 34,
+                    "ProductName": "Oreo Shake:SH03",
+                    "ProductCode": "SH03",
+                    "Product_Price": "90.579"
+                },
+                {
+                    "Id": 35,
+                    "ProductName": "Kit Kat Shake:SH04",
+                    "ProductCode": "SH04",
+                    "Product_Price": "95.54"
+                },
+                {
+                    "Id": 36,
+                    "ProductName": "Ice Cream Soda:IS01",
+                    "ProductCode": "IS01",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 37,
+                    "ProductName": "Cola Float:CF01",
+                    "ProductCode": "CF01",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 38,
+                    "ProductName": "Virgin Mojito:VM01",
+                    "ProductCode": "VM01",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 39,
+                    "ProductName": "Water Bottle 500 ML:WB01",
+                    "ProductCode": "WB01",
+                    "Product_Price": "9.554"
+                },
+                {
+                    "Id": 40,
+                    "ProductName": "Water Bottle 1L:WB02",
+                    "ProductCode": "WB02",
+                    "Product_Price": "19.108"
+                },
+                {
+                    "Id": 42,
+                    "ProductName": "Pepsi 600 ml:1001",
+                    "ProductCode": "1001",
+                    "Product_Price": "28.661"
+                },
+                {
+                    "Id": 43,
+                    "ProductName": "Mountain Dew:1002",
+                    "ProductCode": "1002",
+                    "Product_Price": "19.108"
+                },
+                {
+                    "Id": 45,
+                    "ProductName": "Masala Patties:PT01",
+                    "ProductCode": "PT01",
+                    "Product_Price": "23.88"
+                },
+                {
+                    "Id": 46,
+                    "ProductName": "Paneer Patties:PT02",
+                    "ProductCode": "PT02",
+                    "Product_Price": "33.438"
+                },
+                {
+                    "Id": 47,
+                    "ProductName": "Chocolate Patties:PT03",
+                    "ProductCode": "PT03",
+                    "Product_Price": "38.21"
+                },
+                {
+                    "Id": 48,
+                    "ProductName": "Ice Cream Patties:PT04",
+                    "ProductCode": "PT04",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 48,
+                    "ProductName": "Slice:1004",
+                    "ProductCode": "1004",
+                    "Product_Price": "33.44"
+                },
+                {
+                    "Id": 49,
+                    "ProductName": "Appy Fizz:1005",
+                    "ProductCode": "1005",
+                    "Product_Price": "9.554"
+                },
+                {
+                    "Id": 51,
+                    "ProductName": "Packing Charge:1",
+                    "ProductCode": "1",
+                    "Product_Price": "4.777"
+                },
+                {
+                    "Id": 49,
+                    "ProductName": "Veg Burger:B01",
+                    "ProductCode": "B01",
+                    "Product_Price": "57.322"
+                },
+                {
+                    "Id": 49,
+                    "ProductName": "F'O'M King Size:B02",
+                    "ProductCode": "B02",
+                    "Product_Price": "76.43"
+                },
+                {
+                    "Id": 49,
+                    "ProductName": "Cheese Slice:B03",
+                    "ProductCode": "B03",
+                    "Product_Price": "14.331"
+                },
+                {
+                    "Id": 49,
+                    "ProductName": "Cheesee Samosa:CS01",
+                    "ProductCode": "CS01",
+                    "Product_Price": "47.77"
+                },
+                {
+                    "Id": 50,
+                    "ProductName": "Extra Cheese:EC",
+                    "ProductCode": "EC",
+                    "Product_Price": "19.108"
+                }
+            ],
+            "Customer_Details": [
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ww",
+                    "CustomerId": 1,
+                    "FatherName": "",
+                    "Address": "fwe",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "Ashad",
+                    "CustomerId": 2,
+                    "FatherName": "",
+                    "Address": "Nowgong",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "Manvendra singh ji",
+                    "CustomerId": 3,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "nikunj",
+                    "CustomerId": 4,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9713397826",
+                    "WhatsAppNumber": "9713397826",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "22",
+                    "CustomerId": 5,
+                    "FatherName": "",
+                    "Address": "22",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ramakant",
+                    "CustomerId": 6,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "8982900654",
+                    "WhatsAppNumber": "8982900654",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "shubham soni",
+                    "CustomerId": 7,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9179162181",
+                    "WhatsAppNumber": "9179162181",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "vasu pandey",
+                    "CustomerId": 8,
+                    "FatherName": "",
+                    "Address": "gayatri colony nowgong",
+                    "MobileNumber": "7987481181",
+                    "WhatsAppNumber": "7987481181",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "hari narayan namdeo",
+                    "CustomerId": 9,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "7566564608",
+                    "WhatsAppNumber": "7566564608",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "kriti sharma",
+                    "CustomerId": 10,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "7223090246",
+                    "WhatsAppNumber": "7223090246",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "naman gupta",
+                    "CustomerId": 11,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "7389173539",
+                    "WhatsAppNumber": "7389173539",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "anushka",
+                    "CustomerId": 12,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "wasim",
+                    "CustomerId": 13,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "8989089461",
+                    "WhatsAppNumber": "8989089461",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ashirvad tiwari",
+                    "CustomerId": 14,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "7987562195",
+                    "WhatsAppNumber": "7987562195",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ajay tiwari",
+                    "CustomerId": 15,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ayush",
+                    "CustomerId": 16,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "parasar medical-",
+                    "CustomerId": 17,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "mahajan sahu",
+                    "CustomerId": 18,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "7974604816",
+                    "WhatsAppNumber": "7974604816",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "deepensh",
+                    "CustomerId": 19,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "7000061944",
+                    "WhatsAppNumber": "7000061944",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "shailendra gautam",
+                    "CustomerId": 20,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "6260863331",
+                    "WhatsAppNumber": "6260863331",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "rishav",
+                    "CustomerId": 21,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "7974031265",
+                    "WhatsAppNumber": "7974031265",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "prateek bhat",
+                    "CustomerId": 22,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9425475000",
+                    "WhatsAppNumber": "9425475000",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "khare ji",
+                    "CustomerId": 23,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9425878673",
+                    "WhatsAppNumber": "9425878673",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "d.d. dubey",
+                    "CustomerId": 24,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9424876850",
+                    "WhatsAppNumber": "9424876850",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "rahul",
+                    "CustomerId": 25,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9630726210",
+                    "WhatsAppNumber": "9630726210",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "aman sahu",
+                    "CustomerId": 26,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "8602468249",
+                    "WhatsAppNumber": "8602468249",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "gopal kathail",
+                    "CustomerId": 27,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "7987587756",
+                    "WhatsAppNumber": "7987587756",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ankur",
+                    "CustomerId": 28,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9893289941",
+                    "WhatsAppNumber": "9893289941",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "ayushi awasthi",
+                    "CustomerId": 29,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "8821007233",
+                    "WhatsAppNumber": "8821007233",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "5*",
+                    "CustomerId": 30,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "divya",
+                    "CustomerId": 31,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "8305720259",
+                    "WhatsAppNumber": "8305720259",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "shoeb",
+                    "CustomerId": 32,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "vedika",
+                    "CustomerId": 33,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "8305386219",
+                    "WhatsAppNumber": "8305386219",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "prnay gurudev",
+                    "CustomerId": 34,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "8989009004",
+                    "WhatsAppNumber": "8989009004",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "neetu",
+                    "CustomerId": 35,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "9713101112",
+                    "WhatsAppNumber": "9713101112",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "bhaskar gupta",
+                    "CustomerId": 36,
+                    "FatherName": "",
+                    "Address": "nowgong",
+                    "MobileNumber": "7999816079",
+                    "WhatsAppNumber": "7999816079",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "harshit gupta",
+                    "CustomerId": 37,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "7999824580",
+                    "WhatsAppNumber": "7999824580",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "simran",
+                    "CustomerId": 38,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "9685589183",
+                    "WhatsAppNumber": "9685589183",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "sonu",
+                    "CustomerId": 39,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "9953493443",
+                    "WhatsAppNumber": "9953493443",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "yash gupta",
+                    "CustomerId": 40,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "9179432281",
+                    "WhatsAppNumber": "9179432281",
+                    "Email": "",
+                    "Gender": "Person"
+                },
+                {
+                    "ExecutiveName": "Self",
+                    "CustomerName": "guddu tripathi ",
+                    "CustomerId": 41,
+                    "FatherName": "",
+                    "Address": "",
+                    "MobileNumber": "",
+                    "WhatsAppNumber": "",
+                    "Email": "",
+                    "Gender": "Person"
+                }
+            ],
+            "Payment_Details": [
+                {
+                    "Id": "1",
+                    "Name": "ww",
+                    "Executive": "Self",
+                    "CustomerId": 1,
+                    "Address": "fwe",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "pending",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.99"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "4.2995",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "90.28949999999999"
+                },
+                {
+                    "Id": "2",
+                    "Name": "Ashad",
+                    "Executive": "Self",
+                    "CustomerId": 2,
+                    "Address": "Nowgong",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veg Wrap:W01",
+                        "Pastry:Pastry"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "57.33",
+                        "33.44"
+                    ],
+                    "Ammount": [
+                        "57.33",
+                        "33.44"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "4.5385",
+                    "SubTotal": "90.77",
+                    "GrandTotal": "95.3085"
+                },
+                {
+                    "Id": "3",
+                    "Name": "Manvendra singh ji",
+                    "Executive": "Self",
+                    "CustomerId": 3,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie cheese Sandwich:S02",
+                        "Pastry:Pastry",
+                        "Hot Coffee:HC01"
+                    ],
+                    "Quantity": [
+                        "4",
+                        "12",
+                        "2"
+                    ],
+                    "Price": [
+                        "76.42",
+                        "33.44",
+                        "23.88"
+                    ],
+                    "Ammount": [
+                        "305.68",
+                        "401.28",
+                        "47.76"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "37.736000000000004",
+                    "SubTotal": "754.72",
+                    "GrandTotal": "792.456"
+                },
+                {
+                    "Id": "4",
+                    "Name": "nikunj",
+                    "Executive": "Self",
+                    "CustomerId": 4,
+                    "Address": "nowgong",
+                    "Mobile": "9713397826",
+                    "Email": "",
+                    "Date": "29",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-29",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Mushroom Capsicum Pizza:P04",
+                        "Paneer Mushroom Makhnee:P07",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "2"
+                    ],
+                    "Price": [
+                        "119.42",
+                        "157.63",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "119.42",
+                        "157.63",
+                        "9.554"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "14.3302",
+                    "SubTotal": "286.604",
+                    "GrandTotal": "300.9342"
+                },
+                {
+                    "Id": "5",
+                    "Name": "22",
+                    "Executive": "Self",
+                    "CustomerId": 5,
+                    "Address": "22",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "29",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-29",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "pending",
+                    "Product": [
+                        "Mushroom Corn Sandwich:S04"
+                    ],
+                    "Quantity": [
+                        "5"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "429.95"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "21.497500000000002",
+                    "SubTotal": "429.95",
+                    "GrandTotal": "451.4475"
+                },
+                {
+                    "Id": "6",
+                    "Name": "ramakant",
+                    "Executive": "Self",
+                    "CustomerId": 6,
+                    "Address": "nowgong",
+                    "Mobile": "8982900654",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Online",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie pizza:P02",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "5.49335",
+                    "SubTotal": "109.867",
+                    "GrandTotal": "115.36035000000001"
+                },
+                {
+                    "Id": "7",
+                    "Name": "shubham soni",
+                    "Executive": "Self",
+                    "CustomerId": 7,
+                    "Address": "nowgong",
+                    "Mobile": "9179162181",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Pizza:P05"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "128.97"
+                    ],
+                    "Ammount": [
+                        "128.97"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "6.4485",
+                    "SubTotal": "128.97",
+                    "GrandTotal": "135.4185"
+                },
+                {
+                    "Id": "8",
+                    "Name": "shubham soni",
+                    "Executive": "Self",
+                    "CustomerId": 7,
+                    "Address": "nowgong",
+                    "Mobile": "9179162181",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "pending",
+                    "Product": [
+                        "Paneer Corn Pizza:P05",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "2",
+                        "2"
+                    ],
+                    "Price": [
+                        "128.97",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "257.94",
+                        "9.554"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "267.49399999999997",
+                    "GrandTotal": "267.49399999999997"
+                },
+                {
+                    "Id": "9",
+                    "Name": "shubham soni",
+                    "Executive": "Self",
+                    "CustomerId": 7,
+                    "Address": "nowgong",
+                    "Mobile": "9179162181",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Pizza:P05"
+                    ],
+                    "Quantity": [
+                        "2"
+                    ],
+                    "Price": [
+                        "128.97"
+                    ],
+                    "Ammount": [
+                        "257.94"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "12.897",
+                    "SubTotal": "257.94",
+                    "GrandTotal": "270.837"
+                },
+                {
+                    "Id": "10",
+                    "Name": "vasu pandey",
+                    "Executive": "Self",
+                    "CustomerId": 8,
+                    "Address": "gayatri colony nowgong",
+                    "Mobile": "7987481181",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "F'O'M Cheese Burst Pizza:P08",
+                        "Pastry:Pastry",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "191.072",
+                        "33.44",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "191.072",
+                        "33.44",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "11.46445",
+                    "SubTotal": "229.289",
+                    "GrandTotal": "240.75345"
+                },
+                {
+                    "Id": "11",
+                    "Name": "hari narayan namdeo",
+                    "Executive": "Self",
+                    "CustomerId": 9,
+                    "Address": "nowgong",
+                    "Mobile": "7566564608",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Cheese Sandwich:S03",
+                        "Plain Shake:SH01"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99",
+                        "57.33"
+                    ],
+                    "Ammount": [
+                        "85.99",
+                        "57.33"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "7.166",
+                    "SubTotal": "143.32",
+                    "GrandTotal": "150.486"
+                },
+                {
+                    "Id": "12",
+                    "Name": "kriti sharma",
+                    "Executive": "Self",
+                    "CustomerId": 10,
+                    "Address": "nowgong",
+                    "Mobile": "7223090246",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veg Nuggets:VN01",
+                        "Paneer Patties:PT02"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "52.54",
+                        "33.438"
+                    ],
+                    "Ammount": [
+                        "52.54",
+                        "33.438"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "4.298900000000001",
+                    "SubTotal": "85.97800000000001",
+                    "GrandTotal": "90.27690000000001"
+                },
+                {
+                    "Id": "13",
+                    "Name": "naman gupta",
+                    "Executive": "Self",
+                    "CustomerId": 11,
+                    "Address": "nowgong",
+                    "Mobile": "7389173539",
+                    "Email": "",
+                    "Date": "30",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-30",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Gill Veggie Sandwich:S01",
+                        "Oreo Shake:SH03",
+                        "Water Bottle 500 ML:WB01"
+                    ],
+                    "Quantity": [
+                        "2",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "66.87",
+                        "90.579",
+                        "9.554"
+                    ],
+                    "Ammount": [
+                        "133.74",
+                        "90.579",
+                        "9.554"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "11.693650000000002",
+                    "SubTotal": "233.87300000000002",
+                    "GrandTotal": "245.56665"
+                },
+                {
+                    "Id": "14",
+                    "Name": "anushka",
+                    "Executive": "Self",
+                    "CustomerId": 12,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "31",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-31",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Fries Pizza:P03",
+                        "Veg Wrap:W01"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "114.64",
+                        "57.33"
+                    ],
+                    "Ammount": [
+                        "114.64",
+                        "57.33"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "8.5985",
+                    "SubTotal": "171.97",
+                    "GrandTotal": "180.5685"
+                },
+                {
+                    "Id": "15",
+                    "Name": "wasim",
+                    "Executive": "Self",
+                    "CustomerId": 13,
+                    "Address": "nowgong",
+                    "Mobile": "8989089461",
+                    "Email": "",
+                    "Date": "31",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-31",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie pizza:P02",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "5.49335",
+                    "SubTotal": "109.867",
+                    "GrandTotal": "115.36035000000001"
+                },
+                {
+                    "Id": "16",
+                    "Name": "ashirvad tiwari",
+                    "Executive": "Self",
+                    "CustomerId": 14,
+                    "Address": "nowgong",
+                    "Mobile": "7987562195",
+                    "Email": "",
+                    "Date": "31",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-31",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Mushroom Makhnee:P07",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "2",
+                        "2"
+                    ],
+                    "Price": [
+                        "157.63",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "315.26",
+                        "9.554"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "16.2407",
+                    "SubTotal": "324.81399999999996",
+                    "GrandTotal": "341.05469999999997"
+                },
+                {
+                    "Id": "17",
+                    "Name": "ajay tiwari",
+                    "Executive": "Self",
+                    "CustomerId": 15,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "31",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-31",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Cheese Pasta:CP01",
+                        "French Fries:FF01"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "76.42",
+                        "38.21"
+                    ],
+                    "Ammount": [
+                        "76.42",
+                        "38.21"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "5.7315000000000005",
+                    "SubTotal": "114.63",
+                    "GrandTotal": "120.36149999999999"
+                },
+                {
+                    "Id": "18",
+                    "Name": "ayush",
+                    "Executive": "Self",
+                    "CustomerId": 16,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "31",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-31",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Cold Coffee:CC01",
+                        "Gill Veggie Sandwich:S01"
+                    ],
+                    "Quantity": [
+                        "2",
+                        "2"
+                    ],
+                    "Price": [
+                        "57.33",
+                        "66.87"
+                    ],
+                    "Ammount": [
+                        "114.66",
+                        "133.74"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "12.420000000000002",
+                    "SubTotal": "248.4",
+                    "GrandTotal": "260.82"
+                },
+                {
+                    "Id": "19",
+                    "Name": "parasar medical-",
+                    "Executive": "Self",
+                    "CustomerId": 17,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "31",
+                    "Month": "January",
+                    "Year": "2021",
+                    "FullDate": "2021-1-31",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie cheese Sandwich:S02",
+                        "French Fries:FF01"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "76.42",
+                        "38.21"
+                    ],
+                    "Ammount": [
+                        "76.42",
+                        "38.21"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "5.7315000000000005",
+                    "SubTotal": "114.63",
+                    "GrandTotal": "120.36149999999999"
+                },
+                {
+                    "Id": "20",
+                    "Name": "mahajan sahu",
+                    "Executive": "Self",
+                    "CustomerId": 18,
+                    "Address": "",
+                    "Mobile": "7974604816",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Cheese Sandwich:S03"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.99"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "4.2995",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "90.28949999999999"
+                },
+                {
+                    "Id": "21",
+                    "Name": "deepensh",
+                    "Executive": "Self",
+                    "CustomerId": 19,
+                    "Address": "",
+                    "Mobile": "7000061944",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Mushroom Capsicum Pizza:P04",
+                        "Paneer Patties:PT02"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "2"
+                    ],
+                    "Price": [
+                        "119.42",
+                        "33.438"
+                    ],
+                    "Ammount": [
+                        "119.42",
+                        "66.876"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "9.3148",
+                    "SubTotal": "186.296",
+                    "GrandTotal": "195.61079999999998"
+                },
+                {
+                    "Id": "22",
+                    "Name": "shailendra gautam",
+                    "Executive": "Self",
+                    "CustomerId": 20,
+                    "Address": "",
+                    "Mobile": "6260863331",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Mushroom Makhnee:P07",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "157.63",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "157.63",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "8.12035",
+                    "SubTotal": "162.40699999999998",
+                    "GrandTotal": "170.52734999999998"
+                },
+                {
+                    "Id": "23",
+                    "Name": "rishav",
+                    "Executive": "Self",
+                    "CustomerId": 21,
+                    "Address": "",
+                    "Mobile": "7974031265",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Cold Coffee:CC01",
+                        "Paneer Mushroom Makhnee:P07"
+                    ],
+                    "Quantity": [
+                        "2",
+                        "1"
+                    ],
+                    "Price": [
+                        "57.33",
+                        "157.63"
+                    ],
+                    "Ammount": [
+                        "114.66",
+                        "157.63"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "13.6145",
+                    "SubTotal": "272.28999999999996",
+                    "GrandTotal": "285.9045"
+                },
+                {
+                    "Id": "24",
+                    "Name": "prateek bhat",
+                    "Executive": "Self",
+                    "CustomerId": 22,
+                    "Address": "nowgong",
+                    "Mobile": "9425475000",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie cheese Sandwich:S02"
+                    ],
+                    "Quantity": [
+                        "2"
+                    ],
+                    "Price": [
+                        "76.42"
+                    ],
+                    "Ammount": [
+                        "152.84"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "7.642",
+                    "SubTotal": "152.84",
+                    "GrandTotal": "160.482"
+                },
+                {
+                    "Id": "25",
+                    "Name": "khare ji",
+                    "Executive": "Self",
+                    "CustomerId": 23,
+                    "Address": "nowgong",
+                    "Mobile": "9425878673",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Mushroom Makhnee:P07",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "157.63",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "157.63",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "8.12035",
+                    "SubTotal": "162.40699999999998",
+                    "GrandTotal": "170.52734999999998"
+                },
+                {
+                    "Id": "26",
+                    "Name": "d.d. dubey",
+                    "Executive": "Self",
+                    "CustomerId": 24,
+                    "Address": "nowgong",
+                    "Mobile": "9424876850",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie pizza:P02",
+                        "French Fries:FF01",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "105.09",
+                        "38.21",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "105.09",
+                        "38.21",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "7.40385",
+                    "SubTotal": "148.077",
+                    "GrandTotal": "155.48085"
+                },
+                {
+                    "Id": "27",
+                    "Name": "rahul",
+                    "Executive": "Self",
+                    "CustomerId": 25,
+                    "Address": "nowgong",
+                    "Mobile": "9630726210",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "85.99",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "4.53835",
+                    "SubTotal": "90.767",
+                    "GrandTotal": "95.30534999999999"
+                },
+                {
+                    "Id": "28",
+                    "Name": "aman sahu",
+                    "Executive": "Self",
+                    "CustomerId": 26,
+                    "Address": "nowgong",
+                    "Mobile": "8602468249",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Pizza:P05",
+                        "Cheesee Fries:FF02",
+                        "Water Bottle 1L:WB02"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "128.97",
+                        "47.77",
+                        "19.108"
+                    ],
+                    "Ammount": [
+                        "128.97",
+                        "47.77",
+                        "19.108"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "9.7924",
+                    "SubTotal": "195.848",
+                    "GrandTotal": "205.6404"
+                },
+                {
+                    "Id": "29",
+                    "Name": "mahajan sahu",
+                    "Executive": "Self",
+                    "CustomerId": 18,
+                    "Address": "nowgong",
+                    "Mobile": "9893777956",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veg Burger:B01",
+                        "Paneer Corn Cheese Sandwich:S03",
+                        "Cheese Slice:B03"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "2",
+                        "1"
+                    ],
+                    "Price": [
+                        "57.322",
+                        "85.99",
+                        "14.331"
+                    ],
+                    "Ammount": [
+                        "57.322",
+                        "171.98",
+                        "14.331"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "12.18165",
+                    "SubTotal": "243.63299999999998",
+                    "GrandTotal": "255.81464999999997"
+                },
+                {
+                    "Id": "30",
+                    "Name": "gopal kathail",
+                    "Executive": "Self",
+                    "CustomerId": 27,
+                    "Address": "nowgong",
+                    "Mobile": "7987587756",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "F'O'M Cheese Burst Pizza:P08",
+                        "Corn Cheese Wrap:W02",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "191.072",
+                        "66.87",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "191.072",
+                        "66.87",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "13.135950000000001",
+                    "SubTotal": "262.719",
+                    "GrandTotal": "275.85495"
+                },
+                {
+                    "Id": "31",
+                    "Name": "ankur",
+                    "Executive": "Self",
+                    "CustomerId": 28,
+                    "Address": "nowgong",
+                    "Mobile": "9893289941",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie pizza:P02",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "5.49335",
+                    "SubTotal": "109.867",
+                    "GrandTotal": "115.36035000000001"
+                },
+                {
+                    "Id": "32",
+                    "Name": "ayushi awasthi",
+                    "Executive": "Self",
+                    "CustomerId": 29,
+                    "Address": "nowgong",
+                    "Mobile": "8821007233",
+                    "Email": "",
+                    "Date": "3",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-3",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Mushroom Capsicum Pizza:P04",
+                        "Packing Charge:1",
+                        "Veg Hot Dog:HD01"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "119.42",
+                        "4.777",
+                        "47.77"
+                    ],
+                    "Ammount": [
+                        "119.42",
+                        "4.777",
+                        "47.77"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "8.598350000000002",
+                    "SubTotal": "171.967",
+                    "GrandTotal": "180.56535000000002"
+                },
+                {
+                    "Id": "33",
+                    "Name": "5*",
+                    "Executive": "Self",
+                    "CustomerId": 30,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Online",
+                    "PaymentStatus": "pending",
+                    "Product": [
+                        "Mushroom Capsicum Pizza:P04"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "119.42"
+                    ],
+                    "Ammount": [
+                        "119.42"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "119.42",
+                    "GrandTotal": "119.42"
+                },
+                {
+                    "Id": "34",
+                    "Name": "divya",
+                    "Executive": "Self",
+                    "CustomerId": 31,
+                    "Address": "",
+                    "Mobile": "8305720259",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veg Burger:B01",
+                        "Cheese Slice:B03"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "57.322",
+                        "14.331"
+                    ],
+                    "Ammount": [
+                        "57.322",
+                        "14.331"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "3.5826500000000006",
+                    "SubTotal": "71.653",
+                    "GrandTotal": "75.23565"
+                },
+                {
+                    "Id": "35",
+                    "Name": "shoeb",
+                    "Executive": "Self",
+                    "CustomerId": 32,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veg Wrap:W01"
+                    ],
+                    "Quantity": [
+                        "2"
+                    ],
+                    "Price": [
+                        "57.33"
+                    ],
+                    "Ammount": [
+                        "114.66"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "5.7330000000000005",
+                    "SubTotal": "114.66",
+                    "GrandTotal": "120.393"
+                },
+                {
+                    "Id": "36",
+                    "Name": "vedika",
+                    "Executive": "Self",
+                    "CustomerId": 33,
+                    "Address": "",
+                    "Mobile": "8305386219",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.99"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "4.2995",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "90.28949999999999"
+                },
+                {
+                    "Id": "37",
+                    "Name": "prnay gurudev",
+                    "Executive": "Self",
+                    "CustomerId": 34,
+                    "Address": "nowgong",
+                    "Mobile": "8989009004",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "F'O'M Cheese Burst Pizza:P08",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "191.072",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "191.072",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "9.79245",
+                    "SubTotal": "195.849",
+                    "GrandTotal": "205.64145"
+                },
+                {
+                    "Id": "38",
+                    "Name": "neetu",
+                    "Executive": "Self",
+                    "CustomerId": 35,
+                    "Address": "nowgong",
+                    "Mobile": "9713101112",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Cheese Sandwich:S03",
+                        "F'O'M Overloaded Sandwich:S05"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99",
+                        "114.64"
+                    ],
+                    "Ammount": [
+                        "85.99",
+                        "114.64"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "10.031500000000001",
+                    "SubTotal": "200.63",
+                    "GrandTotal": "210.6615"
+                },
+                {
+                    "Id": "39",
+                    "Name": "bhaskar gupta",
+                    "Executive": "Self",
+                    "CustomerId": 36,
+                    "Address": "nowgong",
+                    "Mobile": "7999816079",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie pizza:P02",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "105.09",
+                        "4.777"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "05",
+                    "TaxAmmount": "5.49335",
+                    "SubTotal": "109.867",
+                    "GrandTotal": "115.36035000000001"
+                },
+                {
+                    "Id": "40",
+                    "Name": "harshit gupta",
+                    "Executive": "Self",
+                    "CustomerId": 37,
+                    "Address": "",
+                    "Mobile": "7999824580",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Cheesee Fries:FF02"
+                    ],
+                    "Quantity": [
+                        "3"
+                    ],
+                    "Price": [
+                        "47.77"
+                    ],
+                    "Ammount": [
+                        "143.31"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "7.165500000000001",
+                    "SubTotal": "143.31",
+                    "GrandTotal": "150.4755"
+                },
+                {
+                    "Id": "41",
+                    "Name": "simran",
+                    "Executive": "Self",
+                    "CustomerId": 38,
+                    "Address": "",
+                    "Mobile": "9685589183",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Pizza:P05"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "128.97"
+                    ],
+                    "Ammount": [
+                        "128.97"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "6.4485",
+                    "SubTotal": "128.97",
+                    "GrandTotal": "135.4185"
+                },
+                {
+                    "Id": "42",
+                    "Name": "sonu",
+                    "Executive": "Self",
+                    "CustomerId": 39,
+                    "Address": "",
+                    "Mobile": "9953493443",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Mushroom Makhnee:P07",
+                        "Cheesee Samosa:CS01",
+                        "F'O'M King Size:B02",
+                        "Cheese Slice:B03",
+                        "Veg Hot Dog:HD01"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "1",
+                        "1",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "157.63",
+                        "47.77",
+                        "76.43",
+                        "14.331",
+                        "47.77"
+                    ],
+                    "Ammount": [
+                        "157.63",
+                        "47.77",
+                        "76.43",
+                        "14.331",
+                        "47.77"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "17.196550000000002",
+                    "SubTotal": "343.93100000000004",
+                    "GrandTotal": "361.12755000000004"
+                },
+                {
+                    "Id": "43",
+                    "Name": "yash gupta",
+                    "Executive": "Self",
+                    "CustomerId": 40,
+                    "Address": "",
+                    "Mobile": "9179432281",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "F'O'M Cheese Burst Pizza:P08",
+                        "Shake With Ice Cream :SH02",
+                        "Cold Coffee With Ice Cream:CC02",
+                        "Paneer Corn Cheese Sandwich:S03"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "2",
+                        "1",
+                        "1"
+                    ],
+                    "Price": [
+                        "191.072",
+                        "71.65",
+                        "71.65",
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "191.072",
+                        "143.3",
+                        "71.65",
+                        "85.99"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "24.600600000000004",
+                    "SubTotal": "492.01200000000006",
+                    "GrandTotal": "516.6126"
+                },
+                {
+                    "Id": "44",
+                    "Name": "guddu tripathi ",
+                    "Executive": "Self",
+                    "CustomerId": 41,
+                    "Address": "",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "4",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-4",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Paneer Corn Pizza:P05",
+                        "Packing Charge:1"
+                    ],
+                    "Quantity": [
+                        "2",
+                        "2"
+                    ],
+                    "Price": [
+                        "128.97",
+                        "4.777"
+                    ],
+                    "Ammount": [
+                        "257.94",
+                        "9.554"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "13.374699999999999",
+                    "SubTotal": "267.49399999999997",
+                    "GrandTotal": "280.8687"
+                },
+                {
+                    "Id": "45",
+                    "Name": "Ashad",
+                    "Executive": "Self",
+                    "CustomerId": 2,
+                    "Address": "Nowgong",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "24",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-24",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veg Wrap:W01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "57.33"
+                    ],
+                    "Ammount": [
+                        "57.330"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "5",
+                    "TaxAmmount": "2.87",
+                    "SubTotal": "57.33",
+                    "GrandTotal": "60.20"
+                },
+                {
+                    "Id": "46",
+                    "Name": "ww",
+                    "Executive": "Self",
+                    "CustomerId": 1,
+                    "Address": "fwe",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "24",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-24",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Corn Cheese Wrap:W02"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "66.87"
+                    ],
+                    "Ammount": [
+                        "66.870"
+                    ],
+                    "GST": "Yes",
+                    "Tax": "2",
+                    "TaxAmmount": "1.34",
+                    "SubTotal": "66.87",
+                    "GrandTotal": "68.21"
+                },
+                {
+                    "Id": "47",
+                    "Name": "nikunj",
+                    "Executive": "Self",
+                    "CustomerId": 4,
+                    "Address": "nowgong",
+                    "Mobile": "9713397826",
+                    "Email": "",
+                    "Date": "27",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-27",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Veggie pizza:P02"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "105.09"
+                    ],
+                    "Ammount": [
+                        "105.090"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "105.09",
+                    "GrandTotal": "105.09"
+                },
+                {
+                    "Id": "48",
+                    "Name": "nikunj",
+                    "Executive": "Self",
+                    "CustomerId": 4,
+                    "Address": "nowgong",
+                    "Mobile": "9713397826",
+                    "Email": "",
+                    "Date": "27",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-27",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "2"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "171.980"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "171.98",
+                    "GrandTotal": "171.98"
+                },
+                {
+                    "Id": "49",
+                    "Name": "nikunj",
+                    "Executive": "Self",
+                    "CustomerId": 4,
+                    "Address": "nowgong",
+                    "Mobile": "9713397826",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.990"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "85.99"
+                },
+                {
+                    "Id": "50",
+                    "Name": "ww",
+                    "Executive": "Self",
+                    "CustomerId": 1,
+                    "Address": "fwe",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "French Fries:FF01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "38.21"
+                    ],
+                    "Ammount": [
+                        "38.210"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "38.21",
+                    "GrandTotal": "38.21"
+                },
+                {
+                    "Id": "51",
+                    "Name": "Ashad",
+                    "Executive": "Self",
+                    "CustomerId": 2,
+                    "Address": "Nowgong",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.990"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "85.99"
+                },
+                {
+                    "Id": "52",
+                    "Name": "ww",
+                    "Executive": "Self",
+                    "CustomerId": 1,
+                    "Address": "fwe",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.990"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "85.99"
+                },
+                {
+                    "Id": "53",
+                    "Name": "ww",
+                    "Executive": "Self",
+                    "CustomerId": 1,
+                    "Address": "fwe",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.990"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "85.99"
+                },
+                {
+                    "Id": "54",
+                    "Name": "ww",
+                    "Executive": "Self",
+                    "CustomerId": 1,
+                    "Address": "fwe",
+                    "Mobile": "",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.990"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "85.99"
+                },
+                {
+                    "Id": "55",
+                    "Name": "ramakant",
+                    "Executive": "Self",
+                    "CustomerId": 6,
+                    "Address": "nowgong",
+                    "Mobile": "8982900654",
+                    "Email": "",
+                    "Date": "28",
+                    "Month": "February",
+                    "Year": "2021",
+                    "FullDate": "2021-2-28",
+                    "PaymentMode": "Cash",
+                    "PaymentStatus": "Success",
+                    "Product": [
+                        "Plain Cheese Pizza:P01"
+                    ],
+                    "Quantity": [
+                        "1"
+                    ],
+                    "Price": [
+                        "85.99"
+                    ],
+                    "Ammount": [
+                        "85.990"
+                    ],
+                    "GST": "No",
+                    "Tax": "0",
+                    "TaxAmmount": "0",
+                    "SubTotal": "85.99",
+                    "GrandTotal": "85.99"
+                }
+            ],
+            "StockDetails": [
+                {
+                    "Id": 1,
+                    "ProductName": "Plain Cheese Pizza:P01",
+                    "Ingredients": [
+                        "pizza topping",
+                        "peri peri masala",
+                        "cheese",
+                        "pizza base"
+                    ],
+                    "Quantity": [
+                        "5",
+                        "3",
+                        "50",
+                        "1"
+                    ],
+                    "Unit": [
+                        "rs",
+                        "rs",
+                        "gm",
+                        ""
+                    ]
+                },
+                {
+                    "Id": 2,
+                    "ProductName": "Veggie pizza:P02",
+                    "Ingredients": [
+                        "pizza base",
+                        "pizza topping",
+                        "peri peri",
+                        "onion",
+                        "tomato",
+                        "capsicum",
+                        "cheese"
+                    ],
+                    "Quantity": [
+                        "1",
+                        "5",
+                        "3",
+                        "5",
+                        "2",
+                        "5",
+                        "50"
+                    ],
+                    "Unit": [
+                        "",
+                        "rs",
+                        "rs",
+                        "rs",
+                        "rs",
+                        "rs",
+                        "gm"
+                    ]
+                }
+            ],
+            "Area": [
+                {
+                    "Id": 1,
+                    "orderId": "Order1",
+                    "Name": "nowgong"
+                }
+            ]
         }
     }
 ]

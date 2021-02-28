@@ -149,7 +149,8 @@
                       <th>Quantity</th>  
                         <th>Ingredents</th>
                       <th>Total Ingredient Qunantity</th>  
-                        <th>Per Uint qantity </th>                     
+                        <th>Per Uint qantity </th>  
+                        <th>Date</th>                   
                     </tr>
                     </thead>
                     <tbody id="tablerow">
@@ -243,10 +244,11 @@
           var areaid = $("#areaid").val();
           var executiveid = $("#executive").val();
           let date=new Date();
-          let day=date.toLocaleDateString().slice(3,5)
-          let month=date.toLocaleDateString().slice(0,2)
-          let year=date.toLocaleDateString().slice(6,10)
-          let full=year+"-"+day+"-"+month;
+          let day = date.getDate();
+          let m =date.getMonth();
+          let month = m + 1; 
+          let year = date.getFullYear();
+          let full=year + "-" + month + "-" + day;
           var details=from+","+to+","+duration+","+executiveid+","+full;
           console.log(from);
           console.log(to);
@@ -258,7 +260,7 @@
                     $("#createfield").append(`<input type="text" name="" id="myinput" class="float-right" placeholder="Search" onkeyup="serachfun()">`)
                     var x = document.getElementById("example").rows.length;
                     for(let i=0;i<data.Result.length;i++){
-                      $("#tablerow").append(`<tr><td>${i+x}</td><td>${data.Result[i]["Product"]}</td><td>${data.Result[i]["Quantity"]}</td><td>${data.Result[i]["Ingredients"]}</td><td>${data.Result[i]["IngreQuan"]}</td><td>${data.Result[i]["Unit"]}</td>`)
+                      $("#tablerow").append(`<tr><td>${i+x}</td><td>${data.Result[i]["Product"]}</td><td>${data.Result[i]["Quantity"]}</td><td>${data.Result[i]["Ingredients"]}</td><td>${data.Result[i]["IngreQuan"]}</td><td>${data.Result[i]["Unit"]}</td><td>${data.Result[i]["FullDate"]}</td></tr>`)
                     }
                   //   $(document).ready(function() {
                   //   $('#example').DataTable( {
