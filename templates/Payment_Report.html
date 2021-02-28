@@ -19,8 +19,8 @@
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="/">Home</a></li>
-								<li class="breadcrumb-item active">Record</li>
+								<li class="breadcrumb-item"><a href="{{url_for('start')}}">Home</a></li>
+								<li class="breadcrumb-item active">Day Book</li>
 							</ol>
 						</div>
 					</div>
@@ -135,7 +135,8 @@
 									<div class="mb-2">
 										<!-- <button class="btn btn-primary" id="download">Download Pdf</button> -->
 										<button onclick="exportTableToExcel('example')" class="btn btn-primary">Export Table Data To Excel File</button>
-										<a href="{{url_for('payment_update')}}" class="btn btn-primary mt-3 mb-3" id="but">UpdateStatus</a>
+										<a href="{{url_for('payment_update')}}" class="btn btn-primary mt-1" id="but">UpdateStatus</a>
+										<a href="" class="btn btn-primary mt-1" id="refresh">Refresh</a>
 									</div>               
 									<table id="example"
 										class="table table-responsive table-bordered table-striped display" >                             
@@ -198,11 +199,20 @@
     <!-- /.content-wrapper -->
     {% include 'footer.html' %}
 </div>
-<!-- <script>
+
+<script>
 	$(document).ready(function(){
-		$("#tablehead").hide();
+		$("#duration").change(()=>{
+			if($("#duration").val() == "All"){
+				let s = `<option>All</option>`
+				$("#areaid").html(s);
+				$('#executiveid').html(s);
+				$('#customerid').html(s);
+			}
+		});
 	});
-</script> -->
+</script>
+
 <script>
 	$(document).ready(function () {
 		$("#but").hide();
@@ -288,23 +298,24 @@
 			var type=$("#invoiceType").val();
 			var exename=$("#executiveid").val();
 			let date = new Date();
-			// let day = date.toLocaleDateString().slice(3, 5)
-			// let month = date.toLocaleDateString().slice(0, 2)
-			// let year = date.toLocaleDateString().slice(6, 10)
-			let full = date.toLocaleDateString();
+			let day = date.getDate();
+			let month = date.getMonth() + 1;
+			let year = date.getFullYear();
+			let full = year + "-" + month + "-" + day;
             var details=from+","+to+","+customerid+","+duration+","+full+","+exename+","+type;
             $.ajax({
                 url:"/Payment/Daybook/?pro="+details,
                 success:function(data){
                     console.log(data);
-                    if(data.Invoice.length>0 && data.Customer!="No Data Found"){
+                    if(data.Invoice.length>0){
+						$("#trow").html("");
 						$("#but").show();
 						var x = document.getElementById("example").rows.length;
 						console.log(x);
 						// $("#createfield").append(``)
 						// $("#tablehead").show();
                         for(let i=0;i<data.Invoice.length;i++){
-                            $("#trow").append(`<tr><td id="sn1">${i+x}</td><td>${data.Customer[i]["CustomerId"]}</td><td>${data.Invoice[i]["Id"]}</td><td>${data.Invoice[i]["Name"]}</td><td>${data.Invoice[i]["Address"]}</td><td id="email1">${data.Invoice[i]["Email"]}</td><td id="mob">${data.Invoice[i]["Mobile"]}</td><td>${data.Invoice[i]["PaymentStatus"]}</td><td id="paym">${data.Invoice[i]["PaymentMode"]}</td><td id="sub1">${data.Invoice[i]["SubTotal"]}</td><td id="tax1">${data.Invoice[i]["TaxAmmount"]}</td><td>${data.Invoice[i]["GrandTotal"]}</td></tr>`)
+                            $("#trow").append(`<tr><td id="sn1">${i+x}</td><td>${data.Invoice[i]["CustomerId"]}</td><td>${data.Invoice[i]["Id"]}</td><td>${data.Invoice[i]["Name"]}</td><td>${data.Invoice[i]["Address"]}</td><td id="email1">${data.Invoice[i]["Email"]}</td><td id="mob">${data.Invoice[i]["Mobile"]}</td><td>${data.Invoice[i]["PaymentStatus"]}</td><td id="paym">${data.Invoice[i]["PaymentMode"]}</td><td id="sub1">${Number.parseFloat(data.Invoice[i]["SubTotal"]).toFixed(3)}</td><td id="tax1">${Number.parseFloat(data.Invoice[i]["TaxAmmount"]).toFixed(3)}</td><td>${Number.parseFloat(data.Invoice[i]["GrandTotal"]).toFixed(3)}</td></tr>`)
                         }
 											
                     }

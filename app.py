@@ -7,15 +7,20 @@ import os
 import json
 import num2word
 import datetime
-from datetime import date
+import time
+from datetime import date, timedelta
 from collections import defaultdict 
 import smtplib as sm
 from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText   
+from email.mime.text import MIMEText
+import logging
 result_stock = defaultdict(int)
 db_path=os.path.join(os.path.dirname(__file__))
 db_uri='sqlite:///'+os.path.join(db_path,'dbfile.sqlite')
 app=Flask(__name__)
+app.logger.disabled = True
+log = logging.getLogger('werkzeug')
+log.disabled = True
 ui=FlaskUI(app)
 app.config['SECRET_KEY'] = 'thisismysecretkeydonotstealit'
 app.config['SQLALCHEMY_DATABASE_URI']=db_uri
@@ -141,8 +146,11 @@ def login():
                 if "Payment_Details" in jsonobj[0]["User1"]:
                     grandtotal=jsonobj[0]["User1"]["Payment_Details"]
                     for val in range(len(grandtotal)):
-                        total.append(float(grandtotal[val]["GrandTotal"]))
-            return render_template("index.html",email=email,area=arealen,exen=exelen,cus=cuslen,total=sum(total))
+                        if grandtotal[val]["PaymentStatus"] == "Success":
+                            total.append(float(grandtotal[val]["GrandTotal"]))
+                sum_total = sum(total)
+                sum_total = round(sum_total,2)
+            return render_template("index.html",email=email,area=arealen,exen=exelen,cus=cuslen,total=sum_total)
         else:
             if (email in all_user) and (password!=user_name.password):
                 data1="Oops you entered wrong password"
@@ -183,8 +191,11 @@ def start():
                 grandtotal=jsonobj[0]["User1"]["Payment_Details"]
             if grandtotal!=None:
                 for val in range(len(grandtotal)):
-                    total.append(float(grandtotal[val]["GrandTotal"]))
-    return render_template('index.html',email=data,area=arealen,exen=exelen,cus=cuslen,total=sum(total))
+                    if grandtotal[val]["PaymentStatus"] == "Success":
+                        total.append(float(grandtotal[val]["GrandTotal"]))
+            sum_total = sum(total)
+            sum_total = round(sum_total,2)
+    return render_template('index.html',email=data,area=arealen,exen=exelen,cus=cuslen,total=sum_total)
 
 @app.route("/getjson")
 def getjson():
@@ -200,11 +211,14 @@ def getjson():
             payment="No Data Found"
         if payment!="No Data Found":
             for val in range(len(payment)):
-                final.append({
-                    "Month":payment[val]["Month"],
-                    "Payment":float(payment[val]["GrandTotal"])
-                })
-                month.append(payment[val]["Month"])
+                if payment[val]["PaymentStatus"] == "Success":
+                    # print("Yes")
+                    final.append({
+                        "Month":payment[val]["Month"],
+                        "Payment":round(float(payment[val]["GrandTotal"]),3)
+                    })
+                    month.append(payment[val]["Month"])
+        # print(final)
         for i in final:
             result_stock1[i['Month']]+=i['Payment']
         out=[{'Month' : k, 'Payment' : v} for k,v in result_stock1.items()]
@@ -372,7 +386,7 @@ def View():
                             "Email":new_data[i]["Email"]
                         }
                         )
-                    print(org_data)
+                    # print(org_data)
             return render_template("executive_show_delte.html",org_data=org_data,email=data,data1=data1,prop=prop,data2=data2)
     return render_template("executive_show_delte.html")
 
@@ -540,7 +554,7 @@ def AddProduct():
                     json_object[0]["User1"]['ProductDetails']=new_data
                     json.dump(json_object,f,indent=4)
             new_data=sorted(new_data,key=lambda i:(i['Product_Price'], i['ProductName']))
-            print(new_data)
+            # print(new_data)
             return render_template("product.html",email=data,data1=data1,org_data=new_data,prop=prop)
     return render_template("product.html")
 
@@ -577,13 +591,13 @@ def updatedata():
             data=jsonobj[0]["Email"]
             with open("area.json","r+") as f:
                 json_object=json.loads(f.read())
-                for val in range(len(json_object)):
-                    if product_code==json_object[val][f"User{val+1}"]["ProductDetails"][val]["ProductCode"]:
+                for val in range(len(json_object[0]["User1"]["ProductDetails"])):
+                    if product_code==json_object[0]["User1"]["ProductDetails"][val]["ProductCode"]:
                         f.seek(0)
                         f.truncate()
-                        json_object[val][f"User{val+1}"]["ProductDetails"][val]["ProductName"]=product_name
-                        json_object[val][f"User{val+1}"]["ProductDetails"][val]["ProductCode"]=product_code
-                        json_object[val][f"User{val+1}"]["ProductDetails"][val]["Product_Price"]=product_price
+                        json_object[0][f"User1"]["ProductDetails"][val]["ProductName"]=product_name
+                        json_object[0][f"User1"]["ProductDetails"][val]["ProductCode"]=product_code
+                        json_object[0][f"User1"]["ProductDetails"][val]["Product_Price"]=product_price
                         json.dump(json_object,f,indent=4)
                         break
             return render_template("edit_product.html",email=data,data1=data1,prop=prop)
@@ -719,42 +733,51 @@ def ViewRecord():
             json_object=json.loads(f.read())
             new_data=None
             new_data1=None
+            mess = ""
             result=[]
             if "Executive" in json_object[0]["User1"]:
                 new_data=json_object[0]["User1"]["Executive"]
             if "Customer_Details" in json_object[0]["User1"]:
                 new_data1=json_object[0]["User1"]["Customer_Details"]
+
             if new_data!=None and new_data1!=None:
                 for val in range(len(new_data)):
                     if AreaName =="All" and ExeName=="All":
                         for item in range(len(new_data1)):
+                            mess = "Customer"
                             result.append(new_data1[item])
                     elif AreaName ==new_data[val]["AreaName"] and ExeName==new_data[val]["HawkerName"]:
+                        mess = "Customer"
                         for item in range(len(new_data1)):
                             if ExeName==new_data1[item]["ExecutiveName"]:
                                 result.append(new_data1[item])
+            else:
+                if "Payment_Details" in json_object[0]["User1"]:
+                    mess = "Payment"
+                    result = json_object[0]["User1"]["Payment_Details"]
         if len(result)==0:    
             return jsonify({"Result":"No Data Found"})
         else:
-            return jsonify({"Result":result})
+            # print(result)
+            return jsonify({"Result":result,"Message":mess})
 
 @app.route("/RecordView",methods=["GET","POST"])
 def RecordView():
     if request.method=="POST":
         month=request.form.get("month")
         cus_id=request.form.get("cusname")
-        print(cus_id)
+        # print(cus_id)
         new_data=[]
         with open("area.json","r+") as f:
             json_object=json.loads(f.read())
             if "Payment_Details" in json_object[0]["User1"]:
                 payment_details=json_object[0]["User1"]["Payment_Details"]
                 for val in range(len(payment_details)):
-                    if month==payment_details[val]["Month"] and int(cus_id)==payment_details[val]["CustomerId"]:
+                    if month == payment_details[val]["Month"] and int(cus_id) == payment_details[val]["CustomerId"]:
                         new_data.append(payment_details[val])
             else:
                 new_data.append("No Data Found")
-        print(new_data)
+        # print(new_data)
         return jsonify({"Result":new_data})
 
 @app.route("/Invoice")
@@ -782,11 +805,11 @@ def data():
         exe_list=[]
         if "Executive" in json_object[0]["User1"]:
             new_data=json_object[0]["User1"]["Executive"]
-        for val in range(len(new_data)):
-            if area =="All":
-                exe_list.append(new_data[val])
-            elif area in new_data[val]["AreaName"]:
-                exe_list.append(new_data[val])
+            for val in range(len(new_data)):
+                if area =="All":
+                    exe_list.append(new_data[val])
+                elif area in new_data[val]["AreaName"]:
+                    exe_list.append(new_data[val])
         return jsonify({"Result":exe_list})
         
 @app.route("/Invoice/customer")
@@ -866,21 +889,23 @@ def Payment():
             cus_detail=None
             if "Customer_Details" in json_object[0]["User1"]:
                 cus_detail=json_object[0]["User1"]["Customer_Details"]
-                cus_detail.append({  
-                    "ExecutiveName":"Self",
-                    "CustomerName":name,
-                    "CustomerId":len(cus_detail)+1,
-                    "FatherName":"",
-                    "Address":address,
-                    "MobileNumber":mobile,
-                    "WhatsAppNumber":mobile,
-                    "Email":email,
-                    "Gender":"Person"
-                })
-                f.seek(0)
-                f.truncate()
-                json_object[0]["User1"]['Customer_Details']=cus_detail
-                json.dump(json_object,f,indent=4)
+                names=[cus_detail[i]["CustomerName"] for i in range(len(cus_detail))]
+                if name not in names:
+                    cus_detail.append({  
+                        "ExecutiveName":"Self",
+                        "CustomerName":name,
+                        "CustomerId":len(cus_detail)+1,
+                        "FatherName":"",
+                        "Address":address,
+                        "MobileNumber":mobile,
+                        "WhatsAppNumber":mobile,
+                        "Email":email,
+                        "Gender":"Person"
+                    })
+                    f.seek(0)
+                    f.truncate()
+                    json_object[0]["User1"]['Customer_Details']=cus_detail
+                    json.dump(json_object,f,indent=4)
             else:
                 cus_detail=[{
                     "ExecutiveName":"Self",
@@ -1025,14 +1050,14 @@ def Success():
         new_data=None
         for val in range(len(json_object)):
             new_data=json_object[val][f"User{val+1}"]["Payment_Details"]
-            print(new_data)
+            # print(new_data)
             for val in range(len(new_data)):
                 if id==new_data[val]["Id"]:
-                    print("Yes")
+                    # print("Yes")
                     f.seek(0)
                     f.truncate()
                     json_object[0]["User1"]["Payment_Details"][val]["PaymentStatus"]="Success"
-                    print(json_object)
+                    # print(json_object)
                     json.dump(json_object,f,indent=4)
     return render_template("invoice_print.html")
 
@@ -1049,6 +1074,18 @@ def ViewInvoice():
                 data1=1
                 area_name=json_object[0]["User1"]["Area"]
         return render_template("view_invoice.html",email=data,area=area_name,data1=data1)
+
+@app.route("/get/customer_data")
+def get_customer_data():
+    cus_detail = []
+    with open("area.json","r+") as f:
+        data = json.loads(f.read())
+        if "Payment_Details" in data[0]["User1"]:
+            cus_detail.append(data[0]["User1"]["Payment_Details"][-1])
+        return jsonify({
+            "Status":"Success",
+            "Data":cus_detail
+        })
     
 @app.route("/Invoice/getdata/")
 def view_invoice():
@@ -1087,14 +1124,28 @@ def view_invoice():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2-d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        # print(d3)
+                        if d3 in all_dates:
                             new_data.append(payment[val])
                         else:
-                            print("")
+                            pass
                     
                     elif exename==payment[val]["Executive"]:
                         getdate=payment[val]["FullDate"]
@@ -1104,15 +1155,32 @@ def view_invoice():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        if d3 in all_dates:
                             new_data.append(payment[val])
                         else:
-                            print("")
-    return jsonify({"Result":new_data})
+                            pass
+        copy_invoice = []
+        for val in range(len(new_data)):
+            if new_data[val]["PaymentStatus"] == "Success":
+                copy_invoice.append(new_data[val])
+    return jsonify({"Result":copy_invoice})
 
 @app.route("/payment_report")
 def payment_report():
@@ -1132,16 +1200,16 @@ def payment_report():
 def show_payment_report():
     data1=request.args.get("pro")
     out=list(data1.split(","))
-    print(f"Out is:{out}")
+    # print(f"Out is:{out}")
     cus_name=out[2]
     duration=out[3]
     strat=out[0]
     end=out[1]
-    m,d,y=out[4].split("/")
-    full=y + "-" + m + "-" + d
-    print(f"Full is:{full}")
+    y,d,m=out[4].split("-")
+    full=y + "-" + d + "-" + m
+    # print(f"Full is:{full}")
     exename=out[5]
-    type=out[6]
+    invoice_type=out[6]
     with open("area.json","r+") as f:
         json_object=json.loads(f.read())
         data=None
@@ -1157,41 +1225,52 @@ def show_payment_report():
             # print("Today")
             if(new_data!=None):
                 for val in range(len(new_data)):
-                    if full==new_data[val]["FullDate"] and cus_name=="All" and type=="All":
+                    if full==new_data[val]["FullDate"] and cus_name=="All" and invoice_type=="All":
                         # print("First Condition")
                         invoice_details.append(new_data[val])
-                    elif full==new_data[val]["FullDate"] and cus_name =="All" and type==new_data[val]["GST"]:
+                    elif full==new_data[val]["FullDate"] and cus_name =="All" and invoice_type==new_data[val]["GST"]:
                         # print("Second Condition")
                         invoice_details.append(new_data[val])
-                    elif full==new_data[val]["FullDate"] and cus_name in new_data[val]["Name"] and type=="All":
+                    elif full==new_data[val]["FullDate"] and cus_name in new_data[val]["Name"] and invoice_type=="All":
                         # print("First Condition")
                         invoice_details.append(new_data[val])
-                    elif full==new_data[val]["FullDate"] and cus_name in new_data[val]["Name"] and type==new_data[val]["GST"]:
+                    elif full==new_data[val]["FullDate"] and cus_name in new_data[val]["Name"] and invoice_type==new_data[val]["GST"]:
                         # print("Second Condition")
                         invoice_details.append(new_data[val])
         else:
             if(new_data!=None):
                 for val in range(len(new_data)):
-                    if cus_name =="All" and type=="All":
+                    if cus_name =="All" and invoice_type=="All":
                         getdate=new_data[val]["FullDate"]
-                        print(getdate)
+                        # print(getdate)
                         y2,m2,d2=getdate.split("-")
                         y2,m2,d2=int(y2),int(m2),int(d2)
                         y,m,d=strat.split("-")
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        print(d1)
-                        print(d2)
-                        print(d3)
-                        if(d1>=d3 and d2>=d3):
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        if d3 in all_dates:
                             invoice_details.append(new_data[val])
                         else:
-                            print("")
-                    elif cus_name =="All" and type==new_data[val]["GST"]:
+                            pass
+                    elif cus_name =="All" and invoice_type==new_data[val]["GST"]:
                         getdate=new_data[val]["FullDate"]
                         y2,m2,d2=getdate.split("-")
                         y2,m2,d2=int(y2),int(m2),int(d2)
@@ -1199,19 +1278,29 @@ def show_payment_report():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        print(d1)
-                        print(d2)
-                        print(d3)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        if d3 in all_dates:
                             invoice_details.append(new_data[val])
                         else:
-                            print("")
+                            pass
 
-                    elif cus_name in new_data[val]["Name"] and type=="All":
+                    elif cus_name in new_data[val]["Name"] and invoice_type=="All":
                         getdate=new_data[val]["FullDate"]
                         y2,m2,d2=getdate.split("-")
                         y2,m2,d2=int(y2),int(m2),int(d2)
@@ -1219,18 +1308,28 @@ def show_payment_report():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        # print(d1)
-                        # print(d2)
-                        # print(d3)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        if d3 in all_dates:
                             invoice_details.append(new_data[val])
                         else:
-                            print("")
-                    elif cus_name in new_data[val]["Name"] and type==new_data[val]["GST"]:
+                            pass
+                    elif cus_name in new_data[val]["Name"] and invoice_type==new_data[val]["GST"]:
                         getdate=new_data[val]["FullDate"]
                         y2,m2,d2=getdate.split("-")
                         y2,m2,d2=int(y2),int(m2),int(d2)
@@ -1238,24 +1337,33 @@ def show_payment_report():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        # print(d1)
-                        # print(d2)
-                        # print(d3)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
-                            invoice_details.append(new_data[val])
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
                         else:
-                            print("")
-        if new_data1!=None:
-            for val in range(len(new_data1)):
-                for val1 in range(len(invoice_details)):
-                    if invoice_details[val1]["Name"]==new_data1[val]["CustomerName"]:
-                        cus_details.append(new_data1[val])
-                        break
-    return jsonify({"Invoice":invoice_details,"Customer":cus_details})
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        if d3 in all_dates:
+                            new_data.append(new_data[val])
+                        else:
+                            pass
+        copy_invoice = []
+        for val in range(len(invoice_details)):
+            if invoice_details[val]["PaymentStatus"] == "Success":
+                copy_invoice.append(invoice_details[val])
+                
+    return jsonify({"Invoice":invoice_details})
 
 @app.route("/MostCustomer")
 def MostCustomer():
@@ -1290,7 +1398,6 @@ def ShowCustomer():
                         })
                         # name.pop()
         payment_details=sorted(payment_details,key=lambda i: i['Visited'],reverse=True)
-        print(payment_details)
         return jsonify({"payment":payment_details})
             
 @app.route("/MostProduct")
@@ -1333,7 +1440,7 @@ def ShowCustomers():
                 result1 = defaultdict(int)
                 result2 = defaultdict(int)
                 for d in payment_details:
-                    result1[d['Product']]+=int(d['Price'])
+                    result1[d['Product']]+=float(d['Price'])
                 for d in payment_details:
                     result2[d['Product']]+=int(d['Sold'])
                 out=[{'Product': name, 'Ammount': value} for name, value in result1.items()]
@@ -1375,7 +1482,6 @@ def StockDetails():
     exe_name=out[3]
     full=out[4]
     # print(strat)
-    print(full)
     with open("area.json","r+") as f:
         json_object=json.loads(f.read())
         payment=None
@@ -1387,9 +1493,7 @@ def StockDetails():
         product_details=[]
         new_data=[]
         if day=="Today":
-            print("Today")
             if payment!=None:
-                print("Yes")
                 for val in range(len(payment)):
                     if full==payment[val]["FullDate"] and exe_name=="All":
                         new_data.append(payment[val])
@@ -1406,17 +1510,29 @@ def StockDetails():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        print(d1)
-                        print(d2)
-                        print(d3)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
+                        
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
+                        # print(d3)
+                        if d3 in all_dates:
                             new_data.append(payment[val])
                         else:
-                            print("")
+                            pass
                     elif exe_name==payment[val]["Executive"]:
                         getdate=payment[val]["FullDate"]
                         y2,m2,d2=getdate.split("-")
@@ -1425,17 +1541,28 @@ def StockDetails():
                         y1,m1,d1=end.split("-")
                         m,d,y=int(m),int(d),int(y)
                         m1,d1,y1=int(m1),int(d1),int(y1)
-                        d3=(y2,d2,m2)
-                        d2=(y1,d1,m1)
-                        d1=(y,d,m)
-                        # print(d1)
-                        # print(d2)
+                        if len(str(m2))<2:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + "0" + str(m2) + "-" + str(d2)
+                        else:
+                            if len(str(d2))<2:
+                                d3=str(y2) + "-" + str(m2) + "-" + "0" + str(d2)
+                            else:
+                                d3=str(y2) + "-" + str(m2) + "-" + str(d2)
+                        d2=date(y1,m1,d1)
+                        d1=date(y,m,d)
+                        delta = d2 - d1
+                        all_dates = []
+                        for i in range(delta.days + 1):
+                            day = d1 + timedelta(days=i)
+                            all_dates.append(str(day))
                         # print(d3)
-                        if(d1>=d3 and d2>=d3):
-                            # print("yes")
+                        if d3 in all_dates:
                             new_data.append(payment[val])
                         else:
-                            print("") 
+                            pass
         if len(new_data)>0:
             for val in range(len(new_data)):
                 for i in range(len(new_data[val]["Product"])):
@@ -1447,7 +1574,8 @@ def StockDetails():
                                 "Quantity":new_data[val]["Quantity"][i],
                                 "Ingredients":len(products[j]["Ingredients"]),
                                 "IngreQuan":sum([int(q) for q in products[j]["Quantity"]]),
-                                "Unit":sum([int(value[0]) for value in products[j]["Unit"]])
+                                "Unit":sum([int(value[0]) for value in products[j]["Unit"]]),
+                                "FullDate":new_data[val]["FullDate"]
                                 })
                            
                     else:
@@ -1456,11 +1584,12 @@ def StockDetails():
                         "Quantity":new_data[val]["Quantity"][i],
                         "Ingredients":0,
                         "IngreQuan":0,
-                        "Unit":0
+                        "Unit":0,
+                        "FullDate":new_data[val]["FullDate"]
                         })
         else:
             product_details="No Data Found"
-        print(product_details)
+        # print(product_details)
 
     return jsonify({"Result":product_details})
 
@@ -1510,7 +1639,7 @@ def update_payment():
                 if invoice_id==payment[val]["Id"]:
                     # print("Yes")
                     if payment[val]["PaymentStatus"]=="Success":
-                        print("yes")
+                        # print("yes")
                         data2="Payment Status already Success"
                         data1=2
                         # print(data2)
@@ -1642,7 +1771,7 @@ def delteExecutive():
         # print(exedetails)
         for val in range(len(exedetails)):
             if exename==exedetails[val]["HawkerName"]:
-                print('Yes')
+                # print('Yes')
                 f.seek(0)
                 f.truncate()
                 json_object[0]["User1"]["Executive"].remove(exedetails[val])
@@ -1652,7 +1781,7 @@ def delteExecutive():
         if payment_details!=None:
             for val1 in range(len(payment_details)):
                 if exename==payment_details[length+val1]["Executive"]:
-                    print(payment_details)
+                    # print(payment_details)
                     length-=1
                     f.seek(0)
                     f.truncate()
@@ -1789,7 +1918,7 @@ def viewnotice():
             sub=None
             mess=None
             if name==new_data[val]["NoticeName"]:
-                print("yes")
+                # print("yes")
                 notice=new_data[val]["NoticeName"]
                 sub=new_data[val]["Subject"]
                 mess=new_data[val]["Body"]
@@ -1853,7 +1982,7 @@ def fetch():
         Notice={}
         for val in range(len(details)):
             if name==details[val]["NoticeName"]:
-                print("Yes")
+                # print("Yes")
                 Notice['subject']=details[val]["Subject"]
                 Notice['mess']=details[val]["Body"]
         return jsonify({"Result":Notice})
@@ -1895,7 +2024,7 @@ def compose_notice():
             if "Notice" in json_object[0]["User1"]:
                 data2=1
                 notice=json_object[0]["User1"]["Notice"]
-            print(cus_detail)
+            # print(cus_detail)
             if len(cus_detail)>0:
                 for val in range(len(cus_detail)):
                     sendemail.append({
@@ -2021,7 +2150,7 @@ def getcompose():
                 for val in range(len(compose)):
                     if notice==compose[val]["NoticeName"]:
                         compose_details.append(compose[val])
-            print(compose_details)
+            # print(compose_details)
             if duration=="Today":
                 for val in range(len(compose_details)):
                     if full==compose_details[val]["FullDate"]:
@@ -2041,7 +2170,7 @@ def getcompose():
                     if(d1>=d3 and d2>=d3):
                         details.append(compose_details[val])
                     else:
-                        print("")
+                        pass
         # print(details)
         return jsonify({"Result":details})
 
@@ -2057,7 +2186,7 @@ def deletecompose():
             # print("Id")
             for val in range(len(compose)):
                 if int(id)==compose[val]["Id"]:
-                    print("Yes")
+                    # print("Yes")
                     data1="Compose details deleted Successfully."
                     prop="alert alert-info"
                     f.seek(0)
@@ -2224,6 +2353,7 @@ def register():
 @app.route("/print_bill/<int:id>")
 def print_bill(id):
     cus_id=id
+    customer_ids=[]
     with open("area.json","r+") as f:
         json_object=json.loads(f.read())
         details=[]
@@ -2233,9 +2363,18 @@ def print_bill(id):
         quan_sum=[]
         name=None
         mobile=None
+        msg=""
+        prev_amm=0
         payment=json_object[0]["User1"]["Payment_Details"]
         for val in range(len(payment)):
+            if payment[val]["PaymentStatus"] == "pending" and payment[val]["Id"]!=str(cus_id):
+                customer_ids.append({
+                    "cus_id":payment[val]["CustomerId"],
+                    "total":payment[val]["GrandTotal"]
+                })
+        for val in range(len(payment)):
             if cus_id==int(payment[val]["Id"]):
+                cus_ids=payment[val]["CustomerId"]
                 name=payment[val]["Name"]
                 mobile=payment[val]["Mobile"]
                 for val1 in range(len(payment[val]["Product"])):
@@ -2246,26 +2385,40 @@ def print_bill(id):
                         "Quantity":payment[val]["Quantity"][val1],
                         "Price":payment[val]["Price"][val1],
                         "Ammount":payment[val]["Ammount"][val1]
-                    })  
+                    })
+                if payment[val]["PaymentStatus"] == "Success":
+                    msg="Success"
+                else:
+                    msg="Pending"  
                 sub=payment[val]["SubTotal"]
                 tax=payment[val]["Tax"]
+                taxammount = payment[val]["TaxAmmount"]
                 sgst=int(payment[val]["Tax"])/2
                 total=payment[val]["GrandTotal"]
+                for val in range(len(customer_ids)):
+                    if customer_ids[val]["cus_id"] == cus_ids:
+                        prev_amm+=float(customer_ids[val]["total"])
+                        break
+                #     total=payment[val]["GrandTotal"]
+                subtotal=float(total)+prev_amm
         # print(tax)
         # print(sgst)
         # print(total)
         # print(details)
-    return render_template("bill_payment.html",org_data=details,tax=tax,sgst=sgst,total=total,sub=sub,quan=sum(quan_sum),item=len(details),name=name,mobile=mobile,cus=cus_id,msg=num2word.word(int(total)))
-# @app.route("/logout")
-# def logout():
-#     src_file_name="area.json"
-#     bkp_file_loc=r"C:/Users/91962/Desktop/Task/Backup/"
-#     print(bkp_file_loc)
-#     try:
-#         backup.take_bkp(src_file_name,"","",bkp_file_loc)
-#     except(FileNotFoundError):
-#         print("The file you serach is not found in the current directory")
-#     return render_template("login.html")
+        # print(customer_ids)
+    return render_template("bill_payment.html",org_data=details,tax=tax,sgst=sgst,total=total,sub=sub,quan=sum(quan_sum),item=len(details),name=name,taxm=taxammount,mobile=mobile,cus=cus_id,msg=num2word.word(int(subtotal)),msgs=msg,prev=round(prev_amm,3))
+@app.route("/logout")
+def logout():
+    src_file_name="area.json"
+    bkp_file_loc=r"C:/Users/ac/Desktop/Backup/"
+    # print(bkp_file_loc)
+    try:
+        # print("Condition start")
+        import backup
+        backup.take_bkp(src_file_name,"","",bkp_file_loc)
+    except(FileNotFoundError):
+        print("The file you serach is not found in the current directory")
+    return render_template("login.html")
 
 @app.route("/customerManagement/viewCustomer/<int:id>")
 def viewcustomer(id):
@@ -2284,4 +2437,4 @@ def viewcustomer(id):
 
 if __name__=="__main__":
     app.run(debug=True)   
-# ui.run() 
+# ui.run()

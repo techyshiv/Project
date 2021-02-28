@@ -16,7 +16,7 @@
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{url_for('index')}}" class="nav-link"><i
+            <a href="{{url_for('logout')}}" class="nav-link" id="logout"><i
                 class="fas fa-sign-out-alt"></i> Logout</a>
         </li>
     </ul>
@@ -26,3 +26,8 @@
     <!-- Right navbar links -->
     <!-- Right Navbar links end -->
 </nav>
+<script>
+    document.getElementById("logout").addEventListener('click',()=>{
+        alert("Your Backup is send to your mail successfully");
+    });
+</script>

@@ -18,7 +18,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{url_for('start')}}">Home</a></li>
               <li class="breadcrumb-item active">Admin Profile</li>
             </ol>
           </div>
@@ -50,38 +50,39 @@
                                     <thead>
                                         <tr>
                                             <th>Organizaion Name</th>
-                                            <td>abc</td>
+                                            <td>Food 'O' Mystery</td>
                                         </tr>   
                                         <tr>
                                             <th>Address</th>
-                                            <td>abc</td>
+                                            <td>Ramkuteer Near Civil Hospital,Nowgang Chhatarpur Madhya Pradesh.</td>
                                         </tr> 
                                         <tr>
                                             <th>Mobile Number</th>
-                                            <td>123456</td>
+                                            <td>+91 9893363677</td>
                                         </tr>  
                                         <tr>
                                             <th>Email</th>
-                                            <td>sdfghjk</td>
-                                        </tr>  
-                                        <tr>
-                                            <th>Registration Number</th>
-                                            <td>sdfghjk</td>
+                                            <td>foodomystery@gmail.com</td>
                                         </tr>   
                                         <tr>
                                             <th>GSTIN</th>
-                                            <td>14151</td>
-                                        </tr>  
-                                  
-                               
-                                     
+                                            <td>23AAHFF 3223B1Z7</td>
+                                        </tr>     
                                         <tr>
                                             <th>Pan Number</th>
-                                            <td>123456</td>
+                                            <td>AAHFF3223B</td>
                                         </tr>  
                                         <tr>
-                                            <th>Pan Number Type</th>
-                                            <td>123456</td>
+                                            <th>CITY</th>
+                                            <td>Nowgang</td>
+                                        </tr>   
+                                        <tr>
+                                            <th>DISTRICT</th>
+                                            <td>Chhatarpur</td>
+                                        </tr>   
+                                        <tr>
+                                            <th>PIN</th>
+                                            <td>471201</td>
                                         </tr>   
                                      
                                     </thead>
@@ -89,7 +90,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="profilephoto">
-                                    <img src="/static/img/food1.png" class="img-responsive img-prject" width="200px" height="200px">
+                                    <img src="/static/img/food.png" class="img-responsive img-prject" width="200px" height="200px">
                                 </div>
                             </div>
                         </div>  
@@ -107,38 +108,38 @@
                                         </tr> 
                                         <tr>
                                             <th>Contact Number </th>
-                                            <td id="mobile"></td>
+                                            <td id="mobile">+91 9893363677</td>
                                         </tr>
                                        
                                   
                                         <tr>
                                             <th>Email ID</th>
-                                            <td id="email"></td>
+                                            <td id="email">foodomystery@gmail.com</td>
                                         </tr>   
                           
                                         <tr>
                                             <th>Address</th>
-                                            <td>hecjvh</td>
+                                            <td>Ramkuteer Near Civil Hospital,Nowgang Chhatarpur Madhya Pradesh.</td>
                                         </tr>   
                                         <tr>
                                             <th>City</th>
-                                            <td>Lucknow</td>
+                                            <td>Nowgang</td>
                                         </tr>   
                                         <tr>
                                             <th>District</th>
-                                            <td>up</td>
+                                            <td>Chhatarpur</td>
                                         </tr> 
                                         <tr>
                                             <th>State</th>
-                                            <td>up</td>
+                                            <td>Madhya Pradesh</td>
                                         </tr>  
                                         <tr>
                                             <th>Pin code</th>
-                                            <td>226017</td>
+                                            <td>471201</td>
                                         </tr>  
                                         <tr>
                                             <th>Pan Number.</th>
-                                            <td>sdfghj</td>
+                                            <td>AAHFF3223B</td>
                                         </tr>  
                                     </thead>
                                 </table>                                       
@@ -155,27 +156,27 @@
                                     <thead>
                                         <tr>
                                             <th>Bank Name</th>
-                                            <td>SBI</td>
+                                            <td>--NA--</td>
                                         </tr> 
                                         <tr>
                                             <th>Branch</th>
-                                            <td>jjjjjj</td>
+                                            <td>--NA--</td>
                                         </tr>  
                                         <tr>
                                             <th>Account Holder Name</th>
-                                            <td>Deku</td>
+                                            <td>--NA--</td>
                                         </tr>
                                         <tr>
                                             <th>Account Number</th>
-                                            <td>777</td>
+                                            <td>--NA--</td>
                                         </tr> 
                                         <tr>
                                             <th>IFSC Code</th>
-                                            <td>SBIN0000222</td>
+                                            <td>--NA--</td>
                                         </tr>  
                                         <tr>
                                             <th>UPI ID</th>
-                                            <td>123456789</td>
+                                            <td>--NA--</td>
                                         </tr>
                                     </thead>
                                 </table>                                       
@@ -199,8 +200,6 @@
             success:function(data){
                 console.log(data.Result.Name);
                 $("#name").html(data.Result.Name)
-                $("#email").html(data.Result.Email)
-                $("#mobile").html(data.Result.Mobile)
             }
         });
     });

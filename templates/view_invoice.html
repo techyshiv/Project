@@ -55,7 +55,7 @@
 										id="duration">
 										<option selected="selected">Today</option>
 
-										<option value="all">All</option>
+										<option value="All">All</option>
 
 									</select>
 
@@ -133,7 +133,10 @@
 
 
 						</div>
+						<input type="hidden" id="count">
 						<button class="btn btn-primary mb-3" id="download">Download Pdf</button>
+						<button class="btn btn-primary mb-3" id="total">Total Amount</button>
+						<a href="" class="btn btn-primary mb-3" id="refresh">Refresh</a>
 						<!-- jquery validation -->
 						<div class="card card-info">
 							<div class="card-header">
@@ -199,6 +202,18 @@
 				
 			});
 </script> -->
+<script>
+	$(document).ready(function(){
+		$("#duration").change(()=>{
+			if($("#duration").val() == "All"){
+				let s = `<option>All</option>`
+				$("#areaid").html(s);
+				$('#executiveid').html(s);
+				$('#customerid').html(s);
+			}
+		});
+	});
+</script>
 <script>
 	$(document).ready(function () {
 		$('#radiobutton2').on('change', function () {
@@ -292,11 +307,15 @@
 			$.ajax({
 				url: "/Invoice/getdata/?pro=" + details,
 				success: function (data) {
+					let count = 0;
 					if(data.Result.length>0){
 						// alert("Success");
+						$("#tablerow").html("");
 						for(let i=0;i<data.Result.length;i++){
-					        $("#tablerow").append(`<tr><td>${data.Result[i]["Id"]}</td><td>${data.Result[i]["Name"]}</td><td>${data.Result[i]["SubTotal"]}</td><td>${data.Result[i]["TaxAmmount"]}</td><td>${data.Result[i]["GrandTotal"]}</td></tr>`);
-					    }
+							count += parseFloat(data.Result[i]["GrandTotal"]);
+							$("#tablerow").append(`<tr><td>${data.Result[i]["Id"]}</td><td>${data.Result[i]["Name"]}</td><td>${Number.parseFloat(data.Result[i]["SubTotal"]).toFixed(3)}</td><td>${Number.parseFloat(data.Result[i]["TaxAmmount"]).toFixed(3)}</td><td>${Number.parseFloat(data.Result[i]["GrandTotal"]).toFixed(3)}</td></tr>`);
+						}
+						$("#count").val(Number.parseFloat(count).toFixed(3));
 					}else{
 						if(areaid=="Select"){
 							alert("Please select area fields");
@@ -347,6 +366,15 @@
 			html2pdf().from(invoice).set(opt).save();
 		});
 	}
+</script>
+
+<script>
+	$(document).ready(function(){
+		$("#total").click(function(){
+			let amm = $("#count").val();
+			alert(`Total Amount = ${amm}`);
+		})
+	});
 </script>
 
 {% endblock %}

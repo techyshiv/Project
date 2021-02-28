@@ -56,7 +56,7 @@
                                                 style="width: 100%;" id="month">
                                                 
 
-                                                <option>Janaury</option>
+                                                <option>January</option>
                                                 <option>February</option>
                                                 <option>March</option>
                                                 <option>April</option>
@@ -184,7 +184,7 @@
                     console.log(data);
                     if(data.Result.length>0 && data.Result!="No Data Found"){
                         for(let i=0;i<data.Result.length;i++){
-                            $("#tablerow").append(`<tr><td>${i+1}</td><td>${data.Result[i]["Product"]}</td><td>${data.Result[i]["Price"]}</td><td>${data.Result[i]["Sold"]}</td><td>${data.Result[i]["Total"]}</td></tr>`)
+                            $("#tablerow").append(`<tr><td>${i+1}</td><td>${data.Result[i]["Product"]}</td><td>${data.Result[i]["Price"]}</td><td>${data.Result[i]["Sold"]}</td><td>${Number.parseFloat(data.Result[i]["Total"]).toFixed(3)}</td></tr>`)
                         }
                     }
                     else{
