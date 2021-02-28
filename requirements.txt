@@ -3,4 +3,3 @@ Flask-Bootstrap==3.3.7.1
 Flask-SQLAlchemy==2.4.0
 gunicorn==19.9.0
 Jinja2==2.11.1
-cx-Freeze==6.5.3
