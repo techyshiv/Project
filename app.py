@@ -2430,4 +2430,4 @@ def viewcustomer(id):
     return render_template("view_Customer.html",name=Name,email=data)
 
 if __name__=="__main__":
-    app.run(debug=False)    
+    app.run(debug=True)    
